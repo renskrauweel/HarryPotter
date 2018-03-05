@@ -3,12 +3,17 @@ body {
 }
 
 header {
-	background-image: url("../../assets/img/hogwarts/02.jpg");
+	/*background-image: url("../../assets/img/hogwarts/02.jpg");
 	background-size: cover;
 	background-position-y: -100px;
 	height: 450px;
 	margin-bottom: 20px;
+	background-repeat: no-repeat;*/
 }
+	header img {
+		width: 100%;
+		margin-bottom: 20px;
+	}
 
 /*	CUSTOM PRIMARY BUTTON	*/
 .btn.btn-custom-primary {
