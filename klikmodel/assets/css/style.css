@@ -3,10 +3,10 @@ body {
 }
 
 header {
-	background-image: url("../../assets/img/background.png");
+	background-image: url("../../assets/img/hogwarts/02.jpg");
 	background-size: cover;
-	background-position-y: -500px;
-	height: 400px;
+	background-position-y: -100px;
+	height: 450px;
 	margin-bottom: 20px;
 }
 
