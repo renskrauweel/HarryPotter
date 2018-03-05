@@ -1,0 +1,21 @@
+header {
+	background-image: url("../../assets/img/background.png");
+	background-size: cover;
+	background-position-y: -500px;
+	height: 400px;
+}
+
+/*	CUSTOM PRIMARY BUTTON	*/
+.btn.btn-custom-primary {
+	background-color: #e74c3c;
+	color: #fff;
+	text-transform: uppercase;
+}
+	.btn.btn-custom-primary:hover {
+		background-color: #c0392b;
+	}
+
+.homepage-header .login-button {
+	position: absolute;
+	right: 0;
+}
