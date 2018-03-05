@@ -1,8 +1,13 @@
+body {
+	background-color: #efefef;
+}
+
 header {
 	background-image: url("../../assets/img/background.png");
 	background-size: cover;
 	background-position-y: -500px;
 	height: 400px;
+	margin-bottom: 20px;
 }
 
 /*	CUSTOM PRIMARY BUTTON	*/
@@ -17,5 +22,10 @@ header {
 
 .homepage-header .login-button {
 	position: absolute;
-	right: 0;
+	right: 10px;
+	top: 10px;
+}
+
+.home h1 {
+	text-align: center
 }
