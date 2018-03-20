@@ -1,5 +1,5 @@
 ﻿@{
-    
+
 }
 
 @RenderPage("~/Layout/Header.cshtml");
@@ -12,10 +12,27 @@
             <div class="content-container">
                 <p>Ik ben de Sorteerhoed van Zweinsteins Hogeschool voor Hekserij en Hocus Pocus. Ook dit jaar sorteer ik weer alle leerlingen in hun ware afdeling.</p>
             </div>
-            <button type="button" class="btn btn-default" onclick="location.href='sortinghat_1.html'">Starten</button>
+            <button type="button" class="btn btn-default" onclick="OpenQuestion()">Starten</button>
         </div>
         <div class="col-sm-1"></div>
     </div>
 </div>
 
-@RenderPage("~/Layout/Footer.cshtml");
+
+
+<p><b>Note:</b> The element will not take up any space when the display property set to "none".</p>
+
+@{ 
+     myFunction()
+    {
+        var x = document.getElementById("myDIV");
+        if (x.style.display === "none")
+        {
+            x.style.display = "block";
+        }
+        else
+        {
+            x.style.display = "none";
+        }
+    }
+    @RenderPage("~/Layout/Footer.cshtml");
