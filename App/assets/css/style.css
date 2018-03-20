@@ -1,0 +1,28 @@
+body {
+	background-color: #efefef;
+}
+
+header img {
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+/*	CUSTOM PRIMARY BUTTON	*/
+.btn.btn-custom-primary {
+	background-color: #e74c3c;
+	color: #fff;
+	text-transform: uppercase;
+}
+	.btn.btn-custom-primary:hover {
+		background-color: #c0392b;
+	}
+
+.homepage-header .login-button {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+
+.home h1 {
+	text-align: center
+}
