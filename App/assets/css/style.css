@@ -7,7 +7,28 @@ header img {
 	margin-bottom: 20px;
 }
 
-/*	CUSTOM PRIMARY BUTTON	*/
+/* Navigation style */
+body .navbar {
+	border-radius: 0;
+	margin-bottom: 0;
+	margin: 0;
+}
+
+/* Profile */
+body .profile-top #background-profile {
+	max-height: 200px;
+}
+
+body .profile-top #person-profile {
+	height: 110px;
+	width: 110px;
+	position: absolute;
+	left: 100px;
+	top: 100px;
+	border-radius: 100px;
+}
+
+/* Custom primary button */
 .btn.btn-custom-primary {
 	background-color: #e74c3c;
 	color: #fff;

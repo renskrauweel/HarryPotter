@@ -1,0 +1,59 @@
+﻿@{
+    
+}
+
+@RenderPage("~/Layout/Header.cshtml");
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <h1>Profile</h1>
+            <div class="content-container">
+                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+            </div>
+            <div id="demo">
+                <!-- For correct display on small screens you must add 'data-title' to each 'td' in your table -->
+                <div class="table-responsive-vertical shadow-z-1">
+                    <!-- Table starts here -->
+                    <table id="table" class="table table-hover table-mc-light-blue">
+                        <thead>
+                            <tr>
+                                <th>Class</th>
+                                <th>Test</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-title="Name">History</td>
+                                <td data-title="Test">achieved</td>
+                            </tr>
+                            <tr>
+                                <td data-title="Name">Potion mixing</td>
+                                <td data-title="Test">achieved</td>
+                            </tr>
+                            <tr>
+                                <td data-title="Name">Want study</td>
+                                <td data-title="Test">failed</td>
+                            </tr>
+                            <tr>
+                                <td data-title="Name">Broom flying</td>
+                                <td data-title="Test">failed</td>
+                            </tr>
+                            <tr>
+                                <td data-title="Name">Spell testing</td>
+                                <td data-title="Test">achieved</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+</div>
+
+@RenderPage("~/Layout/Footer.cshtml");
