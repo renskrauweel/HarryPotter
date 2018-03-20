@@ -1,3 +1,65 @@
-﻿@{
-    
+﻿@using WebMatrix.Data
+
+@{
+    // Check for session
+    if (Session["id_user"] != null)
+    {
+        Response.Redirect("~/Profile.cshtml");
+    }
+
+    // Validation requirefield
+    Validation.RequireField("username");
+    Validation.RequireField("password");
+
+    // Database connection
+    var db = Database.Open("HarryPotter");
+
+    if (IsPost && Validation.IsValid())
+    {
+        // Requist values out Form
+        string username = Request.Form["username"];
+        string password = Request.Form["password"];
+
+        // Check if username and password are equal from data in database
+        var setCookie = db.QuerySingle("SELECT user_id, username, password FROM Users WHERE username = @0 AND password = @1", username, password);
+        if (setCookie == null)
+        {
+            // Error message if credentials are incorrect
+            ModelState.AddFormError("De ingevoerde gebruikersnaam of het ingevoerde wachtwoord is onjuist.");
+        }
+        else
+        {
+            // Set session and redirect
+            Session["id_user"] = setCookie.user_id;
+            Response.Redirect("~/Profile.cshtml");
+        }
+    }
 }
+@RenderPage("~/Layout/header.cshtml");
+
+<div class="container">
+    <div class="row">
+        <div class="auth-form-title">
+            <h1>Login</h1>
+        </div>
+        <div class="auth-inner">
+            <div class="auth-form">
+                <form method="post">
+                    <div class="form-details">
+                        <label class="user">
+                            <input type="text" name="username" placeholder="Gebruikersnaam" id="username" value="@Request.Form["username"]">
+                        </label>
+                        <label class="validation-wrong">@Html.ValidationMessage("username")</label>
+                        <label class="pass">
+                            <input type="password" name="password" placeholder="Wachtwoord" id="password" value="@Request.Form["password"]">
+                        </label>
+                        <label class="validation-wrong">@Html.ValidationMessage("password")</label>
+                    </div>
+                    <button type="submit" class="form-btn">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@RenderPage("~/Layout/footer.cshtml")

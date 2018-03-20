@@ -1,0 +1,11 @@
+﻿@{
+
+    // Redirect if not logged in
+    if (Session["id_user"] != null)
+    {
+        // Remove session and redirect
+        Session.Remove("id_user");
+        Response.Redirect("~/Login");
+    }
+
+}

@@ -1,5 +1,9 @@
 ﻿@{
-    
+    // Check for session
+    if (Session["id_user"] == null)
+    {
+        Response.Redirect("~/Login.cshtml");
+    }
 }
 
 @RenderPage("~/Layout/Header.cshtml");

@@ -5,21 +5,37 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Stylesheets --> 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="~/Assets/Css/Style.css" rel="stylesheet" />
 </head>
 <body>
     <nav class="navbar navbar-default">
-        <ul class="nav navbar-nav">
-            <li><a href="#">Home</a></li>
-            <li><a href="~/Profile.cshtml">Profile</a></li>
-            <li><a href="#">Classes</a></li>
-            <li><a href="#">Management</a></li>
-        </ul>
+        <!-- Check for session, to decide which navigation to show -->
+        @if (Session["user_id"] == null)
+        {
+            <ul class="nav navbar-nav">
+                <li><a href="~/Login.cshtml">Login</a></li>
+                <li><a href="~/Register.cshtml">Registreer</a></li>
+            </ul>
+        }
+        else
+        {
+            <ul class="nav navbar-nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="~/Profile.cshtml">Profile</a></li>
+                <li><a href="#">Classes</a></li>
+                <li><a href="#">Management</a></li>
+                <li><a href="~/Logout.cshtml">Logout</a></li>
+            </ul>
+        }
+
     </nav>
+

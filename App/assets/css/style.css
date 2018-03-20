@@ -47,3 +47,103 @@ body .profile-top #person-profile {
 .home h1 {
 	text-align: center
 }
+
+
+/* Set black background color, white text and some padding */
+footer {
+	color: dimgrey;
+}
+
+/* Login design */
+.auth-form-title {
+	text-align: center;
+}
+
+.auth-form {
+	text-align: center;
+}
+
+	.auth-form input {
+		-moz-border-bottom-colors: none;
+		-moz-border-left-colors: none;
+		-moz-border-right-colors: none;
+		-moz-border-top-colors: none;
+		background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+		border-color: -moz-use-text-color -moz-use-text-color #d4d9e3;
+		border-image: none;
+		border-style: none none solid;
+		border-width: medium medium 1px;
+		font-size: 13px;
+		font-weight: 300;
+		width: 100%;
+		color: #000;
+		padding: 15px 50px;
+		font-size: 17px;
+		max-width: 550px;
+	}
+
+label.add-to-list input#add-to-list,
+label.listname input#listname,
+label.wishlist_code input#wishlist_code {
+	border-style: solid;
+	border-width: 1px;
+}
+
+.auth-form label {
+	margin-bottom: 5px;
+	width: 100%;
+}
+
+.auth-signup .tab-content {
+	background: #ffffff none repeat scroll 0 0;
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
+	display: inline-block;
+	margin-top: -8px;
+	width: 100%;
+}
+
+.form-btn {
+	background: #e74c3c;
+	border: medium none;
+	border-radius: 100px;
+	color: #ffffff;
+	font-weight: 400;
+	max-width: 250px;
+	padding: 10px 0;
+	position: relative;
+	width: 100%;
+	margin-bottom: 10px;
+	box-shadow: 0 2px 8px #d2d2d2;
+	-moz-box-shadow: 0 2px 8px #d2d2d2;
+	-webkit-box-shadow: 0 2px 8px #d2d2d2;
+}
+
+.form-details {
+	padding: 35px 0;
+}
+
+.tab-content .tab-pane {
+	padding: 35px 0;
+}
+
+/* Form validation */
+.validation-wrong {
+	max-width: 550px;
+}
+
+label.validation-wrong span {
+	text-align: left;
+	display: block;
+	color: red;
+	margin-left: 50px;
+}
+
+label.top-validation-wrong {
+	text-align: center;
+	display: block;
+	color: red;
+}
+
+body label.top-validation-wrong div.validation-summary-errors ul li {
+	list-style-type: initial;
+}
