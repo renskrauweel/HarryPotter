@@ -26,7 +26,6 @@ public class Data
          * string answer | The answer
          * string house | House where the points of the answer go to
          * int points | Number of points
-         * string question
          */
         new Answer(1, 1, "Gryffindor", "Gryffindor", 5),
         new Answer(2, 1, "Hufflepuff", "Hufflepuff", 5),
