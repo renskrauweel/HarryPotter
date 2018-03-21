@@ -1,41 +1,99 @@
 ﻿@{
     Page.Title = "Sorting Hat";
+
+    if (Session["id_user"] == null)
+    {
+        Response.Redirect("~/Login");
+    }
+
+    // Fetch sortinghat questions
+    List<Question> questions = Data.GetQuestions();
+
+    if (IsPost)
+    {
+        // Foreach through post request
+        foreach (string s in Request.Form.Keys)
+        {
+            Response.Write(s.ToString() + ":" + Request.Form[s] + "<br>");
+        }
+    }
+
 }
 
-@RenderPage("~/Layout/Header.cshtml");
+@RenderPage("~/Layout/Header.cshtml")
 
 <div class="container">
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-10">
             <h1>Welcome</h1>
-            <h3>Sorteerhoed</h3>
-            <div class="content-container">
-                <p>Ik ben de Sorteerhoed van Zweinsteins Hogeschool voor Hekserij en Hocus Pocus. Ook dit jaar sorteer ik weer alle leerlingen in hun ware afdeling.</p>
+            <h3>Sortinghat</h3>
+            
+            <div id="intro">
+                <div class="content-container">
+                    <p>I am the Sortinghat from Hogwarts School of Witchcraft and Hocus Pocus. Also this year I sort all students to their true house.</p>
+                </div>
             </div>
-            <button type="button" class="btn btn-default" onclick="OpenQuestion()">Starten</button>
+            
+            <form method="POST">
+                @{
+                    int count = 0;
+                    foreach (Question question in questions)
+                    {
+                        count++;
+                        // Get question's answers
+                        List<Answer> answers = Data.GetAnswers(question.GetQuestionId());
+
+                        <div id="question_@count" class="form-group">
+                            <h2>@question.GetQuestion()</h2>
+                            @foreach (Answer answer in answers)
+                            {
+                                <div class="radio">
+                                    <label><input type="radio" name="question_@answer.GetQuestionId()" value="@answer.GetAnswerId()">@answer.GetAnswer()</label>
+                                </div>
+                            }
+                            @if (count > 1)
+                            {
+                                <span class="btn btn-primary" onclick="OpenQuestion(this, 'prev')">Previous question</span>
+                            }
+                            @if (count < questions.Count)
+                            {
+                                <span class="btn btn-primary" onclick="OpenQuestion(this, 'next')">Next question</span>
+                            }
+                            @if (count == questions.Count)
+                            {
+                                <input type="submit" class="btn btn-success" value="Sort me!" />
+                            }
+                        </div>
+                    }
+                }
+
+            </form>
         </div>
         <div class="col-sm-1"></div>
     </div>
 </div>
 
-<div id="question_[count]"></div>
-
-<p><b>Note:</b> The element will not take up any space when the display property set to "none".</p>
+@RenderPage("~/Layout/Footer.cshtml")
 
 <script>
+function OpenQuestion(obj, direction) {
+    var parent = $(obj).parent();
+    questionId = $(parent)[0].id.split("_")[1];
 
-    var count = 0; 
-        OpenQuestion()
-        {
-            count++;
-            var x = document.getElementById("question");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            }
-            else {
-                x.style.display = "none";
-            }
-        }
+    // Hide current question
+    $('#question_' + questionId).css("display", "none");
+
+    // Show next or previous question
+    if (direction == 'next') {
+        questionId++;
+    } else {
+        questionId--;
+    }
+    $('#question_' + questionId).css("display", "block");
+}
+$(document).ready(function () {
+    $("div[id^='question_']").css("display", "none");
+    $('#question_1').css("display", "block");
+});
 </script>
-    @RenderPage("~/Layout/Footer.cshtml");
