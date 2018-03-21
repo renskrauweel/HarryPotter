@@ -19,7 +19,7 @@
 <body>
     <nav class="navbar navbar-default">
         <!-- Check for session, to decide which navigation to show -->
-        @if (Session["user_id"] == null)
+        @if (Session["id_user"] == null) 
         {
             <ul class="nav navbar-nav">
                 <li><a href="~/Login.cshtml">Login</a></li>
