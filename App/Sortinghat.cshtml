@@ -1,5 +1,5 @@
 ﻿@{
-
+    Page.Title = "Sorting Hat";
 }
 
 @RenderPage("~/Layout/Header.cshtml");
@@ -8,7 +8,8 @@
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-10">
-            <h1>Sorteerhoed</h1>
+            <h1>Welcome</h1>
+            <h3>Sorteerhoed</h3>
             <div class="content-container">
                 <p>Ik ben de Sorteerhoed van Zweinsteins Hogeschool voor Hekserij en Hocus Pocus. Ook dit jaar sorteer ik weer alle leerlingen in hun ware afdeling.</p>
             </div>
@@ -18,21 +19,23 @@
     </div>
 </div>
 
-
+<div id="question_[count]"></div>
 
 <p><b>Note:</b> The element will not take up any space when the display property set to "none".</p>
 
-@{ 
-     myFunction()
-    {
-        var x = document.getElementById("myDIV");
-        if (x.style.display === "none")
+<script>
+
+    var count = 0; 
+        OpenQuestion()
         {
-            x.style.display = "block";
+            count++;
+            var x = document.getElementById("question");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            }
+            else {
+                x.style.display = "none";
+            }
         }
-        else
-        {
-            x.style.display = "none";
-        }
-    }
+</script>
     @RenderPage("~/Layout/Footer.cshtml");
