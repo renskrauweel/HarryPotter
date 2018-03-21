@@ -19,22 +19,23 @@
     </div>
 </div>
 
-
+<div id="question_[count]"></div>
 
 <p><b>Note:</b> The element will not take up any space when the display property set to "none".</p>
 
 <script>
-    var count = 0;
-    OpenQuestion()
-    {
-        count++;
-        var x = document.getElementById("myDIV");
-        if (x.style.display === "none") {
-            x.style.display = "block";
+
+    var count = 0; 
+        OpenQuestion()
+        {
+            count++;
+            var x = document.getElementById("question");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            }
+            else {
+                x.style.display = "none";
+            }
         }
-        else {
-            x.style.display = "none";
-        }
-    }
 </script>
     @RenderPage("~/Layout/Footer.cshtml");
