@@ -20,6 +20,9 @@
         string username = Request.Form["username"];
         string password = Request.Form["password"];
 
+        // Hash password
+        password = Cryptographer.GetHashString(password);
+
         // Check if username and password are equal from data in database
         var setCookie = db.QuerySingle("SELECT user_id, username, password FROM Users WHERE username = @0 AND password = @1", username, password);
         if (setCookie == null)

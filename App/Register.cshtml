@@ -27,6 +27,9 @@
         string password = Request.Form["password"];
         string email = Request.Form["mail"];
 
+        // Hash password
+        password = Cryptographer.GetHashString(password);
+
         // Check if username is already taken
         var check_username = db.QuerySingle("Select * from Users where username = @0", username);
 
