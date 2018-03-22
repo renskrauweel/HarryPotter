@@ -9,15 +9,29 @@
     // Fetch sortinghat questions
     List<Question> questions = Data.GetQuestions();
 
+    // Housepoints
+    string houseChosen = null;
+    int pointsGryffindor = 0;
+    int pointsHufflepuff = 0;
+    int pointsRavenclaw = 0;
+    int pointsSlytherin = 0;
+
     if (IsPost)
     {
         // Foreach through post request
         foreach (string s in Request.Form.Keys)
         {
-            Response.Write(s.ToString() + ":" + Request.Form[s] + "<br>");
-            var var1 = Data.GetAnswer(Request.Form[s].AsInt());
-            var var2 = var1;
+            Dictionary<string, int> housePointPair = Data.GetAnswer(Request.Form[s].AsInt()).GetHousePointPair();
+            pointsGryffindor += housePointPair.Values.ElementAt(0);
+            pointsHufflepuff += housePointPair.Values.ElementAt(1);
+            pointsRavenclaw += housePointPair.Values.ElementAt(2);
+            pointsSlytherin += housePointPair.Values.ElementAt(3);
         }
+
+        Sortinghat sortinghat = new Sortinghat();
+        int userId = Convert.ToInt32(Session["id_user"]);
+        houseChosen = sortinghat.Sort(new Dictionary<string, int> { { "Gryffindor", pointsGryffindor }, { "Hufflepuff", pointsHufflepuff },
+            { "Ravenclaw", pointsRavenclaw }, { "Slytherin", pointsSlytherin } }, userId);
     }
 
 }
@@ -36,8 +50,31 @@
                     <p>I am the Sortinghat from Hogwarts School of Witchcraft and Hocus Pocus. Also this year I sort all students to their true house.</p>
                 </div>
             </div>
-            
-            <form method="POST" id="form">
+
+            @if (houseChosen != null)
+            {
+                <h3>Your house: @houseChosen</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Gryffindor</th>
+                            <th scope="col">Hufflepuff</th>
+                            <th scope="col">Ravenclaw</th>
+                            <th scope="col">Slytherin</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@pointsGryffindor</td>
+                            <td>@pointsHufflepuff</td>
+                            <td>@pointsRavenclaw</td>
+                            <td>@pointsSlytherin</td>
+                        </tr>
+                    </tbody>
+                </table>
+            } else
+            {
+                <form method="POST" id="form">
                 @{
                     int count = 0;
                     foreach (Question question in questions)
@@ -71,6 +108,8 @@
                 }
 
             </form>
+            }
+
         </div>
         <div class="col-sm-1"></div>
     </div>
