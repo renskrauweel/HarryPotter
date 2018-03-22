@@ -15,6 +15,8 @@
         foreach (string s in Request.Form.Keys)
         {
             Response.Write(s.ToString() + ":" + Request.Form[s] + "<br>");
+            var var1 = Data.GetAnswer(Request.Form[s].AsInt());
+            var var2 = var1;
         }
     }
 

@@ -8,16 +8,19 @@ public class Answer
     private int answer_id;
     private int question_id;
     private string answer;
-    private string house;
-    private int points;
+    private Dictionary<string, int> housePointPair;
 
-    public Answer(int answer_id, int question_id, string answer, string house, int points)
+    public Answer(int answer_id, int question_id, string answer, Dictionary<string, int> housePointPair)
     {
         this.answer_id = answer_id;
         this.question_id = question_id;
         this.answer = answer;
-        this.house = house;
-        this.points = points;
+        this.housePointPair = housePointPair;
+    }
+
+    public Answer()
+    {
+
     }
 
     // Getters
@@ -33,12 +36,8 @@ public class Answer
     {
         return this.answer;
     }
-    public string GetHouse()
+    public Dictionary<string, int> GetHousePointPair()
     {
-        return this.house;
-    }
-    public int GetPoints()
-    {
-        return this.points;
+        return this.housePointPair;
     }
 }
