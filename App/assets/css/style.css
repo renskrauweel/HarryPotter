@@ -16,15 +16,15 @@ body .navbar {
 
 /* Profile */
 body .profile-top #background-profile {
-	max-height: 200px;
+    /*max-height: 200px;*/
 }
 
 body .profile-top #person-profile {
 	height: 110px;
 	width: 110px;
 	position: absolute;
-	left: 100px;
-	top: 100px;
+	left: 120px;
+	top: 150px;
 	border-radius: 100px;
 }
 
@@ -150,9 +150,12 @@ body label.top-validation-wrong div.validation-summary-errors ul li {
 
 @font-face {
     font-family: 'Harry';
-    src: "fonts/HARRY.TTF";
+    src: url("../fonts/HARRY.TTF");
 }
 
-.col-sm-10 h1 {
+h1, h2, h3, h4 {
     font-family:Harry;
+}
+h1 {
+    font-size: 56px;
 }
