@@ -147,6 +147,12 @@ label.top-validation-wrong {
 body label.top-validation-wrong div.validation-summary-errors ul li {
 	list-style-type: initial;
 }
+
+@font-face {
+    font-family: 'Harry';
+    src: "fonts/HARRY.TTF";
+}
+
 .col-sm-10 h1 {
-    font-family: UnifrakturCook;
+    font-family:Harry;
 }
