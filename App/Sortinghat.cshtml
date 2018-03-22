@@ -1,11 +1,11 @@
 ﻿@{
     Page.Title = "Sorting Hat";
-
+    
     if (Session["id_user"] == null)
     {
         Response.Redirect("~/Login");
     }
-
+    
     // Fetch sortinghat questions
     List<Question> questions = Data.GetQuestions();
 

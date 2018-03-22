@@ -12,9 +12,9 @@ public class Data
          * int question_id | Unique, Auto increment
          * string question
          */
-        new Question(1, "Which house do you prefer?"),
-        new Question(2, "What's your favorite fruit?"),
-        new Question(3, "Who is the bad guy?"),
+        new Question(1, "To what animal do you relate yourself with?"),
+        new Question(2, "A Student went into the Dark Woods, because there is a tale about a mystical sword being there. You just heared that she has been gone now for the past 2 hours. What will you do?"),
+        new Question(4, "Who of these people do you trust the most?"),
     };
 
     private static List<Answer> answers = new List<Answer>
@@ -27,20 +27,24 @@ public class Data
          * dictionary housePointsPair | Dictionary containing all houses with the points of the answer to go to that house
          * int points | Number of points
          */
-        new Answer(1, 1, "Gryffindor", new Dictionary<string, int> { {"Gryffindor", 5}, {"Hufflepuff", 3}, {"Ravenclaw", 0}, {"Slytherin", -2} }),
-        new Answer(2, 1, "Hufflepuff", new Dictionary<string, int> { {"Gryffindor", 3}, {"Hufflepuff", 5}, {"Ravenclaw", 0}, {"Slytherin", -2} }),
-        new Answer(3, 1, "Ravenclaw", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 5}, {"Slytherin", 3} }),
-        new Answer(4, 1, "Slytherin", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 3}, {"Slytherin", 5} }),
+        new Answer(1, 1, "Lion", new Dictionary<string, int> { {"Gryffindor", 3}, {"Hufflepuff", 1}, {"Ravenclaw", 0}, {"Slytherin", -1} }),
+        new Answer(2, 1, "Badger", new Dictionary<string, int> { {"Gryffindor", 1}, {"Hufflepuff", 3}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
+        new Answer(3, 1, "Eagle", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 3}, {"Slytherin", 1} }),
+        new Answer(4, 1, "Snake", new Dictionary<string, int> { {"Gryffindor", -1}, {"Hufflepuff", 0}, {"Ravenclaw", 1}, {"Slytherin", 3} }),
 
-        new Answer(5, 2, "Apple's", new Dictionary<string, int> { {"Gryffindor", 3}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-        new Answer(6, 2, "Banana's", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 3}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-        new Answer(7, 2, "Kiwi's", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 3}, {"Slytherin", 0} }),
-        new Answer(8, 2, "Grapes", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 1} }),
+        new Answer(5, 2, "You will go in the Dark Forest with 2 of your friends and try find the mystical sword for yourself to keep.", 
+            new Dictionary<string, int> { {"Gryffindor", -1}, {"Hufflepuff", 0}, {"Ravenclaw", -1}, {"Slytherin", 3} }),
+        new Answer(6, 2, "You decide with a group of friends to go and find the student in the Dark Forest.", 
+            new Dictionary<string, int> { {"Gryffindor", 1}, {"Hufflepuff", 3}, {"Ravenclaw", -1}, {"Slytherin", 0} }),
+        new Answer(7, 2, "You will go in on your own eventhough people call you mad for doing it. You mainly want to find the lost girl, but hopefully you will find the mystical sword as well as the girl.",
+            new Dictionary<string, int> { {"Gryffindor", 3}, {"Hufflepuff", 1}, {"Ravenclaw", -2}, {"Slytherin", -1} }),
+        new Answer(8, 2, "There is no way you will go in the Dark Forest. You will get the teachers as quick as you can and tell them what is happening.",
+            new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 2}, {"Ravenclaw", 4}, {"Slytherin", -1} }),
 
-        new Answer(9, 3, "Hagrid", new Dictionary<string, int> { {"Gryffindor", 5}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-        new Answer(10, 3, "Snape", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 5}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-        new Answer(11, 3, "Dumbledore", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 5}, {"Slytherin", 0} }),
-        new Answer(12, 3, "Voldemort", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 5} }),
+        new Answer(13, 4, "Pomona Sprout", new Dictionary<string, int> { {"Gryffindor", 1}, {"Hufflepuff", 3}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
+        new Answer(14, 4, "Minerva McGonagall", new Dictionary<string, int> { {"Gryffindor", 3}, {"Hufflepuff", 1}, {"Ravenclaw", 0}, {"Slytherin", -1} }),
+        new Answer(15, 4, "Severus Snape", new Dictionary<string, int> { {"Gryffindor", -1}, {"Hufflepuff", 0}, {"Ravenclaw", 1}, {"Slytherin", 3} }),
+        new Answer(16, 4, "Filius Flitwick", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 3}, {"Slytherin", 1} }),
     };
 
     // Get all questions

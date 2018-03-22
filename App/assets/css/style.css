@@ -150,9 +150,10 @@ body label.top-validation-wrong div.validation-summary-errors ul li {
 
 @font-face {
     font-family: 'Harry';
-    src: "fonts/HARRY.TTF";
+    src: url(../fonts/HARRY.TTF);
 }
 
-.col-sm-10 h1 {
+h1 {
     font-family:Harry;
+    font-size: 56px;
 }
