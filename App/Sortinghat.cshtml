@@ -37,7 +37,7 @@
                 </div>
             </div>
             
-            <form method="POST">
+            <form method="POST" id="form">
                 @{
                     int count = 0;
                     foreach (Question question in questions)
@@ -64,7 +64,7 @@
                             }
                             @if (count == questions.Count)
                             {
-                                <input type="submit" class="btn btn-success" value="Sort me!" />
+                                <input type="submit" onclick="return ValidateForm()" class="btn btn-success" value="Sort me!" />
                             }
                         </div>
                     }
@@ -79,21 +79,49 @@
 @RenderPage("~/Layout/Footer.cshtml")
 
 <script>
-function OpenQuestion(obj, direction) {
-    var parent = $(obj).parent();
-    questionId = $(parent)[0].id.split("_")[1];
+    function OpenQuestion(obj, direction) {
+        var parent = $(obj).parent();
+        questionId = $(parent)[0].id.split("_")[1];
 
-    // Hide current question
-    $('#question_' + questionId).css("display", "none");
+        // Hide current question
+        $('#question_' + questionId).css("display", "none");
 
-    // Show next or previous question
-    if (direction == 'next') {
-        questionId++;
-    } else {
-        questionId--;
+        // Show next or previous question
+        if (direction == 'next') {
+            questionId++;
+        } else {
+            questionId--;
+        }
+        $('#question_' + questionId).css("display", "block");
     }
-    $('#question_' + questionId).css("display", "block");
-}
+
+    function ValidateForm() {
+        var allQuestionsAnswered = true;
+
+        $("div[id^='question_']").each(function (i) {
+            var selected = false;
+
+            $(this).children('.radio').each(function (i) {
+                var element = $($(this).children()).find('input')[0]
+                if (element.checked) {
+                    selected = true;
+                }
+            });
+
+            if (selected == false) {
+                $(this).append('<div class="alert alert-danger" role="alert">Please select an answer</div>');
+                allQuestionsAnswered = false;
+            }
+        });
+
+        if (allQuestionsAnswered == false) {
+            $('#notifyUnanswered').remove();
+            $('#form').append('<div id="notifyUnanswered" class="alert alert-danger" role="alert">One or more questions are unanswered</div>');
+        }
+
+        return allQuestionsAnswered;
+    }
+
 $(document).ready(function () {
     $("div[id^='question_']").css("display", "none");
     $('#question_1').css("display", "block");
