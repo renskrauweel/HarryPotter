@@ -58,7 +58,7 @@
 <div class="container">
     <div class="row">
         <div class="auth-form-title">
-            <h1>Registreer</h1>
+            <h1>Register</h1>
         </div>
         <div class="auth-inner">
             <div class="auth-form">
@@ -70,15 +70,15 @@
 
                     <div class="form-details">
                         <label class="firstname">
-                            <input type="text" name="firstname" placeholder="Naam" id="firstname" value="@Request.Form["firstname"]">
+                            <input type="text" name="firstname" placeholder="Firstname" id="firstname" value="@Request.Form["firstname"]">
                         </label>
                         <label class="validation-wrong">@Html.ValidationMessage("firstname")</label>
                         <label class="lastname">
-                            <input type="text" name="lastname" placeholder="Achternaam" id="lastname" value="@Request.Form["lastname"]">
+                            <input type="text" name="lastname" placeholder="Last Name" id="lastname" value="@Request.Form["lastname"]">
                         </label>
                         <label class="validation-wrong">@Html.ValidationMessage("lastname")</label>
                         <label class="user">
-                            <input type="text" name="username" placeholder="Gebruikersnaam" id="username" value="@Request.Form["username"]">
+                            <input type="text" name="username" placeholder="Username" id="username" value="@Request.Form["username"]">
                         </label>
                         <label class="validation-wrong">@Html.ValidationMessage("username")</label>
                         <label class="mail">
@@ -86,11 +86,11 @@
                         </label>
                         <label class="validation-wrong">@Html.ValidationMessage("mail")</label>
                         <label class="password">
-                            <input type="password" name="password" placeholder="Wachtwoord" id="password" value="@Request.Form["password"]">
+                            <input type="password" name="password" placeholder="Password" id="password" value="@Request.Form["password"]">
                         </label>
                         <label class="validation-wrong">@Html.ValidationMessage("password")</label>
                     </div>
-                    <button type="submit" class="form-btn">Registreer</button>
+                    <button type="submit" class="form-btn">Register</button>
                 </form>
             </div>
         </div>

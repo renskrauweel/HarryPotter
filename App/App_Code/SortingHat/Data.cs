@@ -12,7 +12,7 @@ public class Data
          * int question_id | Unique, Auto increment
          * string question
          */
-        new Question(1, "To what animal do you relate yourself with?"),
+        new Question(1, "What animal do you associate yourself with the most?"),
         new Question(2, "A Student went into the Dark Woods, because there is a tale about a mystical sword being there. You just heared that she has been gone now for the past 2 hours. What will you do?"),
         new Question(4, "Who of these people do you trust the most?"),
     };

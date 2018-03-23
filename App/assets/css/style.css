@@ -153,9 +153,11 @@ body label.top-validation-wrong div.validation-summary-errors ul li {
     src: url("../fonts/HARRY.TTF");
 }
 
-h1, h2, h3, h4 {
-    font-family:Harry;
-}
 h1 {
+    font-family: Harry;
     font-size: 56px;
+}
+
+p{
+    font-family:'Times New Roman';
 }
