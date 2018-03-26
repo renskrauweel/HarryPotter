@@ -15,6 +15,29 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="~/Assets/Css/Style.css" rel="stylesheet" />
+    @{
+        if (Session["id_user"] != null)
+        {
+            int userId = Convert.ToInt32(Session["id_user"]);
+            User user = new global::User();
+            user = user.GetUser(userId);
+            switch (user.GetHouseName())
+            {
+                case "Gryffindor":
+                    <link href="~/Assets/Css/Gryffindor.css" rel="stylesheet" />
+                    break;
+                case "Hufflepuff":
+                    <link href="~/Assets/Css/Hufflepuff.css" rel="stylesheet" />
+                    break;
+                case "Ravenclaw":
+                    <link href="~/Assets/Css/Ravenclaw.css" rel="stylesheet" />
+                    break;
+                case "Slytherin":
+                    <link href="~/Assets/Css/Slytherin.css" rel="stylesheet" />
+                    break;
+            }
+        }
+    }
 </head>
 <body>
     <nav class="navbar navbar-default">
