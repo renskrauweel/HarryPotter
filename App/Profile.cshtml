@@ -1,16 +1,28 @@
-﻿@{
+﻿@using WebMatrix.Data
+
+@{
     // Check for session
     if (Session["id_user"] == null)
     {
         Response.Redirect("~/Login.cshtml");
     }
+
+    var db = Database.Open("HarryPotter");
+
+    int user_id = (int)(Session["id_user"]);
+    var house_id = db.QueryValue("SELECT house_id FROM users WHERE user_id = @0", user_id);
+    var firstname = db.QueryValue("SELECT firstname FROM users WHERE user_id = @0", user_id);
+    var lastname = db.QueryValue("SELECT lastname FROM users WHERE user_id = @0", user_id);
+    var house = db.QueryValue("SELECT house_name FROM houses WHERE house_id = @0", house_id);
 }
 
 @RenderPage("~/Layout/Header.cshtml")
 
 <div class="profile-top">
-    <img id="person-profile" src="~/assets/img/Houses/Gryffindor/logo.png">
-    <img style="width:100%;" id="background-profile" src="~/assets/img/Houses/Gryffindor/flag_rsz.png">
+    <img id="person-profile" src="~/Assets/Img/Houses/@house/logo.png">
+    <div class="profile-background">
+        <img id="background-profile" src="~/Assets/Img/Houses/@house/flag.jpg">
+    </div>
 </div>
 
 <div class="container">
@@ -20,7 +32,9 @@
         <div class="col-sm-10">
             <h1>Profile</h1>
             <div class="content-container">
-                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+                <div class="profile-content">
+                   <div class="firstname">@firstname</div>  <div class="lastname">@lastname</div>
+                </div>
             </div>
             <div id="demo">
                 <!-- For correct display on small screens you must add 'data-title' to each 'td' in your table -->

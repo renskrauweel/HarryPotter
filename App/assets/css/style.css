@@ -1,10 +1,20 @@
+/* Body styling */
 body {
 	background-color: #efefef;
 }
 
-header img {
-	width: 100%;
-	margin-bottom: 20px;
+@font-face {
+	font-family: 'Harry';
+	src: url("../fonts/HARRY.TTF");
+}
+
+h1 {
+	font-family: Harry;
+	font-size: 56px;
+}
+
+p {
+	font-family: 'Times New Roman';
 }
 
 /* Navigation style */
@@ -15,9 +25,16 @@ body .navbar {
 }
 
 /* Profile */
-body .profile-top #background-profile {
-    /*max-height: 200px;*/
+div.profile-top div.profile-background {
+	width: 100%;
+	max-height: 300px;
+	overflow: hidden;
 }
+
+div.profile-top div.profile-background img#background-profile {
+	width: 100%;
+}
+
 
 body .profile-top #person-profile {
 	height: 110px;
@@ -148,16 +165,3 @@ body label.top-validation-wrong div.validation-summary-errors ul li {
 	list-style-type: initial;
 }
 
-@font-face {
-    font-family: 'Harry';
-    src: url("../fonts/HARRY.TTF");
-}
-
-h1 {
-    font-family: Harry;
-    font-size: 56px;
-}
-
-p{
-    font-family:'Times New Roman';
-}
