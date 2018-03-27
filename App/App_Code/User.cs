@@ -27,6 +27,11 @@ public class User
 
     }
 
+    public string GetFullName()
+    {
+        return this.firstname + " " + this.lastname;
+    }
+
     public User GetUser(int user_id)
     {
         var db = Database.Open("HarryPotter");
