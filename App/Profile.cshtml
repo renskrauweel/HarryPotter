@@ -7,6 +7,10 @@
         Response.Redirect("~/Login.cshtml");
     }
 
+    // Fetch my classes
+    int userId = Convert.ToInt32(Session["id_user"]);
+    List<Class> classes = Class.GetMyClasses(userId);
+
     var db = Database.Open("HarryPotter");
 
     int user_id = (int)(Session["id_user"]);
@@ -48,26 +52,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td data-title="Name">History</td>
-                                <td data-title="Test">achieved</td>
-                            </tr>
-                            <tr>
-                                <td data-title="Name">Potions</td>
-                                <td data-title="Test">achieved</td>
-                            </tr>
-                            <tr>
-                                <td data-title="Name">Astronomy</td>
-                                <td data-title="Test">failed</td>
-                            </tr>
-                            <tr>
-                                <td data-title="Name">Flying</td>
-                                <td data-title="Test">failed</td>
-                            </tr>
-                            <tr>
-                                <td data-title="Name">Charms</td>
-                                <td data-title="Test">achieved</td>
-                            </tr>
+                            @foreach (Class item in classes)
+                            {
+                                <tr>
+                                    <td>@item.GetClassname()</td>
+                                    <td>achieved/failed</td>
+                                </tr>
+                            }
 
                         </tbody>
                     </table>

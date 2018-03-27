@@ -60,6 +60,29 @@ public class Class
         return classes;
     }
 
+    // Fetch my classes from the database
+    public static List<Class> GetMyClasses(int userId)
+    {
+        var db = Database.Open("HarryPotter");
+        List<Class> classes = new List<Class>();
+
+        var rows = db.Query("SELECT * FROM classes where class_id in " +
+            "(SELECT class_id FROM classes_users WHERE user_id = @0)", userId);
+
+        foreach (var row in rows)
+        {
+            int teacherId = 0;
+            if (row["teacher_id"] != null)
+            {
+                teacherId = (int)row["teacher_id"];
+            }
+            int classId = (int)row["class_id"];
+            classes.Add(new Class(classId, row["classname"], teacherId));
+        }
+
+        return classes;
+    }
+
     // Participate on class
     public static void ParticipateOnClass(int classId, int userId)
     {
