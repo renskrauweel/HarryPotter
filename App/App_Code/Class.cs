@@ -74,4 +74,18 @@ public class Class
 
         db.Dispose();
     }
+
+    // Return if the user is participating on class
+    public static bool IsParticipating(int classId, int userId)
+    {
+        var db = Database.Open("HarryPotter");
+
+        var row = db.QuerySingle("SELECT * FROM classes_users WHERE user_id = @0 AND class_id = @1", userId, classId);
+
+        if (row == null)
+        {
+            return false;
+        }
+        return true;
+    }
 }

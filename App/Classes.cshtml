@@ -11,13 +11,14 @@
     List<Class> classes = Class.GetClasses();
 
     // Participate on class
+    int userId = Convert.ToInt32(Session["id_user"]);
     if (Request.QueryString["classid"] != null)
     {
         int classId = Request.QueryString["classid"].AsInt();
         if (classId != 0)
         {
             // Participate on class
-            Class.ParticipateOnClass(classId, Convert.ToInt32(Session["id_user"]));
+            Class.ParticipateOnClass(classId, userId);
             Response.Redirect("~/Classes");
         }
     }
@@ -54,9 +55,18 @@
                                 var var2 = item;
                                 var var1 = fullname;
                                 <tr>
-                                    <td data-title="Name">@item.GetClassname()</td>
-                                    <td data-title="Link"> @fullname</td>
-                                    <td data-title="Test"><a href="~/Classes?classid=@item.GetClassId()">Participate</a></td>
+                                    <td>@item.GetClassname()</td>
+                                    <td> @fullname</td>
+                                    @{
+                                        if (Class.IsParticipating(item.GetClassId(), userId) == true)
+                                        {
+                                            <td>Participating</td>
+                                        }
+                                        else
+                                        {
+                                            <td><a href="~/Classes?classid=@item.GetClassId()">Participate</a></td>
+                                        }
+                                    }
                                 </tr>
                             }
 					       
@@ -66,7 +76,6 @@
   
 		    </div>
 		</div>
-		<div class="col-sm-1"></div>
 	</div>
 </div>
 
