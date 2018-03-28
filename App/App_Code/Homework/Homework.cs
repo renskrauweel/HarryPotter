@@ -39,15 +39,14 @@ namespace Homework
             return this.deadline;
         }
 
+        // Fetch the highest homework_id from DB
         public static int GetMaxHomeworkId()
         {
             var db = Database.Open("HarryPotter");
 
             var row = db.QueryValue("SELECT MAX(homework_id) FROM homework");
             if (row.GetType() == typeof(DBNull))
-            {
                 return 0;
-            }
             row = Convert.ToInt32(row);
             return row;
         }

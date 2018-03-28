@@ -29,11 +29,13 @@ public class User
 
     }
 
+    // Get the full name of a user
     public string GetFullName()
     {
         return this.firstname + " " + this.lastname;
     }
 
+    // Fetch a user from the DB by user_id
     public User GetUser(int user_id)
     {
         var db = Database.Open("HarryPotter");
@@ -44,14 +46,15 @@ public class User
             int userId = row["user_id"];
             int houseId = 0;
             if (row["house_id"] != null)
-            {
                 houseId = row["house_id"];
-            }
+
             return new User(userId, row["username"], row["firstname"], row["lastname"], row["email"], (int)row["role_id"], houseId);
         }
+
         return new User();
     }
 
+    // Fetch house name
     public string GetHouseName()
     {
         var db = Database.Open("HarryPotter");
@@ -59,6 +62,7 @@ public class User
         return db.QueryValue("SELECT house_name FROM houses WHERE house_id = @0", this.house_id);
     }
 
+    // Fetch role
     public string GetRole()
     {
         var db = Database.Open("HarryPotter");

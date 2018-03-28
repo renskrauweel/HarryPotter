@@ -82,9 +82,8 @@ public class Class
         {
             int teacherId = 0;
             if (row["teacher_id"] != null)
-            {
                 teacherId = (int)row["teacher_id"];
-            }
+
             int classId = (int)row["class_id"];
             classes.Add(new Class(classId, row["classname"], teacherId, row["class_description"]));
         }
@@ -105,9 +104,8 @@ public class Class
         {
             int teacherId = 0;
             if (row["teacher_id"] != null)
-            {
                 teacherId = (int)row["teacher_id"];
-            }
+
             int classId = (int)row["class_id"];
             classes.Add(new Class(classId, row["classname"], teacherId, row["class_description"]));
         }
@@ -123,9 +121,7 @@ public class Class
         var row = db.QuerySingle("SELECT * FROM classes_users WHERE user_id = @0 AND class_id = @1", userId, classId);
 
         if (row == null)
-        {
             db.Execute("INSERT INTO classes_users (user_id, class_id) VALUES (@0, @1)", userId, classId);
-        }
 
         db.Dispose();
     }
@@ -138,9 +134,8 @@ public class Class
         var row = db.QuerySingle("SELECT * FROM classes_users WHERE user_id = @0 AND class_id = @1", userId, classId);
 
         if (row == null)
-        {
             return false;
-        }
+
         return true;
     }
 
@@ -153,9 +148,7 @@ public class Class
 
         int teacherId = 0;
         if (row["teacher_id"] != null)
-        {
             teacherId = (int)row["teacher_id"];
-        }
 
         return new Class((int)row["class_id"], row["classname"], teacherId, row["class_description"]);
     }

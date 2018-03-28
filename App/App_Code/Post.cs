@@ -52,6 +52,7 @@ public class Post
         return this.date;
     }
 
+    // Insert post into DB
     public void AddPost(int user_id, int class_id, string content)
     {
         var db = Database.Open("HarryPotter");

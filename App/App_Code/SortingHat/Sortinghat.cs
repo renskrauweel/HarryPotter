@@ -11,6 +11,7 @@ public class Sortinghat
         
     }
 
+    // Sort user by housepoint pair's
     public string Sort(Dictionary<string, int> housePointPair, int userId)
     {
         string house = housePointPair.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
@@ -37,7 +38,6 @@ public class Sortinghat
             
             db.Execute("UPDATE users SET house_id = @0 WHERE user_id = @1", houseId, userId);
         }
-
 
         return house;
     }
