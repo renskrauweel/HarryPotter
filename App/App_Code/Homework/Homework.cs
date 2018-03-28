@@ -11,12 +11,14 @@ namespace Homework
         private int homework_id;
         private string homework_description;
         private int class_id;
+        private DateTime deadline;
 
-        public Homework(int homework_id, string homework_description, int class_id)
+        public Homework(int homework_id, string homework_description, int class_id, DateTime deadline)
         {
             this.homework_id = homework_id;
             this.homework_description = homework_description;
             this.class_id = class_id;
+            this.deadline = deadline;
         }
 
         public static int GetMaxHomeworkId()
@@ -33,11 +35,11 @@ namespace Homework
         }
 
         // Insert homework into DB
-        public static void InsertHomework(string homework_description, int class_id)
+        public static void InsertHomework(string homework_description, int class_id, DateTime deadline)
         {
             var db = Database.Open("HarryPotter");
 
-            var row = db.Execute("INSERT INTO homework (homework_description, class_id) VALUES (@0, @1)", homework_description, class_id);
+            var row = db.Execute("INSERT INTO homework (homework_description, class_id, deadline) VALUES (@0, @1, @2)", homework_description, class_id, deadline);
         }
     }
 }

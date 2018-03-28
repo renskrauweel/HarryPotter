@@ -73,7 +73,8 @@
         }
 
         // Insert assigment
-        Homework.InsertHomework(Request.Form["description"], Request.Form["class"].AsInt());
+        var dateTime = Convert.ToDateTime(Request.Form["deadline_date"] + " " + Request.Form["deadline_time"]);
+        Homework.InsertHomework(Request.Form["description"], Request.Form["class"].AsInt(), dateTime);
 
         // Insert questions
         foreach (Question question in questions)
@@ -114,9 +115,9 @@
                         <label for="class">Class</label>
                         <select name="class" id="class" class="form-control">
                             @foreach (Class classroom in classes)
-                            {
-                                <option value="@classroom.GetClassId()">@classroom.GetClassname()</option>
-                            }
+                {
+                    <option value="@classroom.GetClassId()">@classroom.GetClassname()</option>
+    }
                         </select>
                     </td>
                 </tr>
@@ -124,6 +125,18 @@
                     <td>
                         <label for="description">Homework description</label>
                         <input type="text" name="description" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="deadline_date">Homework deadline date</label>
+                        <input type="date" name="deadline_date" id="deadline_date" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="deadline_time">Homework deadline time</label>
+                        <input type="time" name="deadline_time" id="deadline_time" class="form-control" />
                     </td>
                 </tr>
                 <tr><th><h4>Question 1</h4></th></tr>
