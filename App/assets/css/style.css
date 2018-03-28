@@ -185,3 +185,10 @@ body label.top-validation-wrong div.validation-summary-errors ul li {
             position: absolute;
             left: 70px;
         }
+
+/* Custom table styling */
+.custom-table {
+    background-color: #fff;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}

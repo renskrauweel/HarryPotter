@@ -46,8 +46,26 @@
         <p>@classroom.GetClassdescription()</p>
     </div>
     <div class="row">
-        <h2>Homework (Coming soon)</h2>
-
+        <h2>Homework</h2>
+        <table class="table table-striped custom-table">
+            <thead>
+                <tr>
+                    <th scope="col">Assignment</th>
+                    <th scope="col">Deadline</th>
+                    <th scope="col">Results</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Homework.Homework homework in classroom.GetHomework())
+    {
+            <tr>
+                <td>@homework.GetHomeworkDescription()</td>
+                <td>@homework.GetDeadline()</td>
+                <td>-</td>
+            </tr>
+}
+            </tbody>
+        </table>
     </div>
     <div class="row">
         <h2>Forum</h2>

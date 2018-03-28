@@ -11,6 +11,7 @@ public class Class
     private int teacher_id;
     private string class_description;
     private List<Post> posts = new List<Post>();
+    private List<Homework.Homework> homework = new List<Homework.Homework>();
 
 	public Class(int class_id, string classname, int teacher_id, string class_description)
 	{
@@ -21,11 +22,18 @@ public class Class
 
         var db = Database.Open("HarryPotter");
 
-        var rows = db.Query("SELECT * FROM posts WHERE class_id = @0 ORDER BY date", this.class_id);
-
-        foreach (var row in rows)
+        // Construct posts
+        var posts = db.Query("SELECT * FROM posts WHERE class_id = @0 ORDER BY date", this.class_id);
+        foreach (var row in posts)
         {
             this.posts.Add(new Post((int)row["post_id"], (int)row["user_id"], (int)row["class_id"], row["content"], row["date"]));
+        }
+
+        // Construct homework
+        var homework = db.Query("SELECT * FROM homework WHERE class_id = @0", this.class_id);
+        foreach (var row in homework)
+        {
+            this.homework.Add(new Homework.Homework((int)row["homework_id"], row["homework_description"], (int)row["class_id"], (DateTime)row["deadline"]));
         }
     }
 
@@ -56,6 +64,10 @@ public class Class
     public List<Post> GetPosts()
     {
         return this.posts;
+    }
+    public List<Homework.Homework> GetHomework()
+    {
+        return this.homework;
     }
 
     // Fetch all the classes from the database

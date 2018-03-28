@@ -21,6 +21,24 @@ namespace Homework
             this.deadline = deadline;
         }
 
+        // Getters
+        public int GetHomeworkId()
+        {
+            return this.homework_id;
+        }
+        public string GetHomeworkDescription()
+        {
+            return this.homework_description;
+        }
+        public int GetClassId()
+        {
+            return this.class_id;
+        }
+        public DateTime GetDeadline()
+        {
+            return this.deadline;
+        }
+
         public static int GetMaxHomeworkId()
         {
             var db = Database.Open("HarryPotter");
