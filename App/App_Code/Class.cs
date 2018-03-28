@@ -9,13 +9,25 @@ public class Class
     private int class_id;
     private string classname;
     private int teacher_id;
+    private string class_description;
+    private List<Post> posts = new List<Post>();
 
-	public Class(int class_id, string classname, int teacher_id)
+	public Class(int class_id, string classname, int teacher_id, string class_description)
 	{
         this.class_id = class_id;
         this.classname = classname;
         this.teacher_id = teacher_id;
-	}
+        this.class_description = class_description;
+
+        var db = Database.Open("HarryPotter");
+
+        var rows = db.Query("SELECT * FROM posts WHERE class_id = @0 ORDER BY date", this.class_id);
+
+        foreach (var row in rows)
+        {
+            this.posts.Add(new Post((int)row["post_id"], (int)row["user_id"], (int)row["class_id"], row["content"], row["date"]));
+        }
+    }
 
     // Getters
     public int GetClassId()
@@ -37,6 +49,14 @@ public class Class
         }
         return new User();
     }
+    public string GetClassdescription()
+    {
+        return this.class_description;
+    }
+    public List<Post> GetPosts()
+    {
+        return this.posts;
+    }
 
     // Fetch all the classes from the database
     public static List<Class> GetClasses()
@@ -54,7 +74,7 @@ public class Class
                 teacherId = (int)row["teacher_id"];
             }
             int classId = (int)row["class_id"];
-            classes.Add(new Class(classId, row["classname"], teacherId));
+            classes.Add(new Class(classId, row["classname"], teacherId, row["class_description"]));
         }
 
         return classes;
@@ -77,7 +97,7 @@ public class Class
                 teacherId = (int)row["teacher_id"];
             }
             int classId = (int)row["class_id"];
-            classes.Add(new Class(classId, row["classname"], teacherId));
+            classes.Add(new Class(classId, row["classname"], teacherId, row["class_description"]));
         }
 
         return classes;
@@ -110,5 +130,21 @@ public class Class
             return false;
         }
         return true;
+    }
+
+    // Get class by id
+    public static Class GetClass(int classId)
+    {
+        var db = Database.Open("HarryPotter");
+
+        var row = db.QuerySingle("SELECT * FROM classes WHERE class_id = @0", classId);
+
+        int teacherId = 0;
+        if (row["teacher_id"] != null)
+        {
+            teacherId = (int)row["teacher_id"];
+        }
+
+        return new Class((int)row["class_id"], row["classname"], teacherId, row["class_description"]);
     }
 }

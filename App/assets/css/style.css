@@ -165,3 +165,23 @@ body label.top-validation-wrong div.validation-summary-errors ul li {
 	list-style-type: initial;
 }
 
+/* Classes forum styling */
+.post {
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 7px;
+}
+    .post-header {
+        position: relative;
+        display: block;
+        height: 60px;
+    }
+        .post-header img {
+            width: 50px;
+            position: absolute;
+        }
+        .post-header h3 {
+            position: absolute;
+            left: 70px;
+        }

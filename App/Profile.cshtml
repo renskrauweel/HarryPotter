@@ -49,15 +49,17 @@
                             <tr>
                                 <th>Class</th>
                                 <th>Test</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (Class item in classes)
                             {
-                                <tr>
-                                    <td>@item.GetClassname()</td>
-                                    <td>achieved/failed</td>
-                                </tr>
+                            <tr>
+                                <td>@item.GetClassname()</td>
+                                <td>achieved/failed</td>
+                                <td><a href="~/Class?class=@item.GetClassId()">Go to class</a></td>
+                            </tr>
                             }
 
                         </tbody>

@@ -1,0 +1,79 @@
+﻿@using WebMatrix.Data
+
+@{
+    // Check for session
+    if (Session["id_user"] == null)
+    {
+        Response.Redirect("~/Login.cshtml");
+    }
+
+    int userId = Convert.ToInt32(Session["id_user"]);
+    int classId = 0;
+    if (Request.QueryString["class"] != null)
+    {
+        classId = Request.QueryString["class"].AsInt();
+        // Redirect if false class
+        if (classId == 0)
+        {
+            Response.Redirect("~/Classes");
+        }
+    }
+
+    // Fetch the class
+    Class classroom = Class.GetClass(classId);
+
+
+    // Validation requirefield
+    Validation.RequireField("content");
+
+    if (IsPost && Validation.IsValid())
+    {
+        // Request values out Form
+        string content = Request.Form["content"];
+
+        Post post = new Post();
+        post.AddPost(userId, classroom.GetClassId(), content);
+
+        Response.Redirect("~/Class?class=" + classroom.GetClassId());
+    }
+}
+
+@RenderPage("~/Layout/Header.cshtml")
+
+<div class="container">
+    <div class="row">
+        <h1>@classroom.GetClassname()</h1>
+        <p>@classroom.GetClassdescription()</p>
+    </div>
+    <div class="row">
+        <h2>Homework (Coming soon)</h2>
+
+    </div>
+    <div class="row">
+        <h2>Forum</h2>
+        @foreach (Post post in classroom.GetPosts())
+        {
+            <div class="post">
+                <div class="post-header">
+                    <img src="~/Assets/Img/Houses/@post.GetAuthor().GetHouseName()/logo.png">
+                    <h3>@post.GetAuthor().GetFullName()</h3>
+                </div>
+                <p>@post.GetContent()</p>
+                <small>@post.GetDate()</small>
+            </div>
+        }
+    </div>
+    <div class="row">
+        <h3>Leave a message</h3>
+        <form method="POST">
+            <div class="form-group">
+                <textarea name="content" class="form-control" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="submit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@RenderPage("~/Layout/Footer.cshtml");
