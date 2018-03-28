@@ -1,0 +1,35 @@
+﻿@using WebMatrix.Data
+
+@{
+    // Check for session
+    if (Session["id_user"] == null)
+    {
+        Response.Redirect("~/Login.cshtml");
+    }
+
+    // Check role
+    int userId = Convert.ToInt32(Session["id_user"]);
+    User user = new User();
+    user = user.GetUser(userId);
+    if (user.GetRole() != "Teacher" && user.GetRole() != "Headmaster")
+    {
+        Response.Redirect("~/Profile");
+    }
+}
+
+@RenderPage("~/Layout/Header.cshtml")
+
+<div class="container">
+    <h1>Management</h1>
+    <div class="row">
+        <h2>Classes</h2>
+    </div>
+    <div class="row">
+        <h2>Teachers</h2>
+    </div>
+    <div class="row">
+        <h2>Homework</h2>
+    </div>
+</div>
+
+@RenderPage("~/Layout/Footer.cshtml");
