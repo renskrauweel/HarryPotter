@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WebMatrix.Data;
 
 namespace Homework
 {
@@ -16,6 +17,27 @@ namespace Homework
             this.homework_id = homework_id;
             this.homework_description = homework_description;
             this.class_id = class_id;
+        }
+
+        public static int GetMaxHomeworkId()
+        {
+            var db = Database.Open("HarryPotter");
+
+            var row = db.QueryValue("SELECT MAX(homework_id) FROM homework");
+            if (row.GetType() == typeof(DBNull))
+            {
+                return 0;
+            }
+            row = Convert.ToInt32(row);
+            return row;
+        }
+
+        // Insert homework into DB
+        public static void InsertHomework(string homework_description, int class_id)
+        {
+            var db = Database.Open("HarryPotter");
+
+            var row = db.Execute("INSERT INTO homework (homework_description, class_id) VALUES (@0, @1)", homework_description, class_id);
         }
     }
 }

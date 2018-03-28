@@ -1,4 +1,5 @@
 ﻿@using WebMatrix.Data
+@using Homework
 
 @{
     // Check for session
@@ -15,21 +16,182 @@
     {
         Response.Redirect("~/Profile");
     }
+
+    // Fetch classes
+    List<Class> classes;
+    if (user.GetRole() == "Headmaster")
+    {
+        classes = Class.GetClasses();
+    }
+    else
+    {
+        classes = Class.GetMyClasses(userId);
+    }
+
+    // Setting variables
+    int lastQuestionId;
+    string lastAnswer = null;
+
+
+    // Form handling
+    if (IsPost)
+    {
+        int homeworkId = Homework.GetMaxHomeworkId();
+        if (homeworkId == 0)
+        {
+            homeworkId = 1;
+        } else
+        {
+            homeworkId++;
+        }
+
+        List<Question> questions = new List<Question>();
+        List<Answer> answers = new List<Answer>();
+
+        // Foreach through post request
+        foreach (string s in Request.Form.Keys)
+        {
+            // Response.Write(s.ToString() + ":" + Request.Params[s] + "<br>");
+            if (s.ToString().Contains("question"))
+            {
+                string[] tokens = s.ToString().Split('_');
+                var var1 = tokens;
+                questions.Add(new Question(tokens.ElementAt(1).AsInt(), Request.Params[s], homeworkId));
+            }
+            if (s.ToString().Contains("answer"))
+            {
+                string[] tokens = s.ToString().Split('_');
+                lastQuestionId = tokens.ElementAt(1).AsInt();
+                lastAnswer = Request.Params[s];
+            }
+            if (s.ToString().Contains("scoring"))
+            {
+                string[] tokens = s.ToString().Split('_');
+                lastQuestionId = tokens.ElementAt(1).AsInt();
+                answers.Add(new Answer(lastQuestionId, lastAnswer, Request.Params[s].AsInt()));
+            }
+        }
+
+        // Insert assigment
+        Homework.InsertHomework(Request.Form["description"], Request.Form["class"].AsInt());
+
+        // Insert questions
+        foreach (Question question in questions)
+        {
+            question.InsertQuestion();
+        }
+
+        // Insert answers
+        foreach (Answer answer in answers)
+        {
+            answer.InsertAnswer();
+        }
+
+    }
 }
 
 @RenderPage("~/Layout/Header.cshtml")
 
 <div class="container">
     <h1>Management</h1>
-    <div class="row">
-        <h2>Classes</h2>
-    </div>
-    <div class="row">
-        <h2>Teachers</h2>
-    </div>
+    @if (user.GetRole() == "Headmaster")
+    {
+        <div class="row">
+            <h2>Classes</h2>
+        </div>
+        <div class="row">
+            <h2>Teachers</h2>
+        </div>
+    }
     <div class="row">
         <h2>Homework</h2>
+        <h3>Add homework</h3>
+        <form method="POST">
+            <input type="hidden" name="form_type" value="add_homework" />
+            <table class="table" id="tblHomework">
+                <tr>
+                    <td>
+                        <label for="class">Class</label>
+                        <select name="class" id="class" class="form-control">
+                            @foreach (Class classroom in classes)
+                            {
+                                <option value="@classroom.GetClassId()">@classroom.GetClassname()</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="description">Homework description</label>
+                        <input type="text" name="description" class="form-control" />
+                    </td>
+                </tr>
+                <tr><th><h4>Question 1</h4></th></tr>
+                <tr>
+                    <td>
+                        <label for="question_1_content">Question 1</label>
+                        <textarea class="form-control" id="question_1_content" name="question_1_content" rows="2"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="answer_1_1">Answer 1</label>
+                        <textarea class="form-control" id="answer_1_1" name="answer_1_1" rows="2"></textarea>
+                    </td>
+                    <td>
+                        <label for="scoring_1_1">Scoring points</label>
+                        <input type="number" class="form-control" id="scoring_1_1" name="scoring_1_1" min="1" max="100" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="answer_1_2">Answer 2</label>
+                        <textarea class="form-control" id="answer_1_2" name="answer_1_2" rows="2"></textarea>
+                    </td>
+                    <td>
+                        <label for="scoring_1_2">Scoring points</label>
+                        <input type="number" class="form-control" id="scoring_1_2" name="scoring_1_2" min="1" max="100" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="answer_1_3">Answer 3</label>
+                        <textarea class="form-control" id="answer_1_3" name="answer_1_3" rows="2"></textarea>
+                    </td>
+                    <td>
+                        <label for="scoring_1_3">Scoring points</label>
+                        <input type="number" class="form-control" id="scoring_1_3" name="scoring_1_3" min="1" max="100" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="answer_1_4">Answer 4</label>
+                        <textarea class="form-control" id="answer_1_4" name="answer_1_4" rows="2"></textarea>
+                    </td>
+                    <td>
+                        <label for="scoring_1_4">Scoring points</label>
+                        <input type="number" class="form-control" id="scoring_1_4" name="scoring_1_4" min="1" max="100" />
+                    </td>
+                </tr>
+            </table>
+            <div class="btn btn-default" id="btnAddQuestion">Add question</div>
+            <input type="submit" class="btn btn-success" value="Add homework" />
+        </form>
     </div>
 </div>
 
-@RenderPage("~/Layout/Footer.cshtml");
+@RenderPage("~/Layout/Footer.cshtml")
+
+<script>
+    $(document).ready(function () {
+        // $("div[id^='question_']").css("display", "none");
+        $('#btnAddQuestion').on('click', function () {
+
+            var questionNumber = $('#tblHomework tbody tr').last().find('td textarea')[0].id.split("_")[1];
+            questionNumber++;
+            var appendString = '<tr><th><h4>Question ' + questionNumber + '</h4></th></tr><tr><td><label for="question_' + questionNumber + '_content">Question ' + questionNumber + '</label><textarea class="form-control" id="question_' + questionNumber + '_content" name="question_' + questionNumber + '_content" rows="2"></textarea></td></tr><tr><td><label for="answer_' + questionNumber + '_1">Answer 1</label><textarea class="form-control" id = "answer_' + questionNumber + '_1" name ="answer_' + questionNumber + '_1" rows="2"></textarea></td><td><label for="scoring_' + questionNumber + '_1">Scoring points</label><input type="number" class="form-control" id="scoring_' + questionNumber + '_1" name="scoring_' + questionNumber + '_1" min="1" max="100" /></td></tr><tr><td><label for="answer_' + questionNumber + '_2">Answer 2</label><textarea class="form-control" id="answer_1_2" name="answer_' + questionNumber + '_2" rows="2"></textarea></td><td><label for="scoring_' + questionNumber + '_2">Scoring points</label><input type="number" class="form-control" id="scoring_1_2" name="scoring_' + questionNumber + '_2" min="1" max="100" /></td></tr><tr><td><label for="answer_' + questionNumber + '_3">Answer 3</label><textarea class="form-control" id="answer_' + questionNumber + '_3" name="answer_' + questionNumber + '_3" rows="2"></textarea></td><td><label for="scoring_' + questionNumber + '_3">Scoring points</label><input type="number" class="form-control" id="scoring_' + questionNumber + '_3" name="scoring_' + questionNumber + '_3" min="1" max="100" /></td></tr><tr><td><label for="answer_' + questionNumber + '_4">Answer 4</label><textarea class="form-control" id="answer_' + questionNumber + '_4" name="answer_' + questionNumber + '_4" rows="2"></textarea></td><td><label for="scoring_' + questionNumber + '_4">Scoring points</label><input type="number" class="form-control" id="scoring_' + questionNumber + '_4" name="scoring_' + questionNumber + '_4" min="1" max="100" /></td></tr>';
+
+            $('#tblHomework').append(appendString);
+        });
+    });
+</script>

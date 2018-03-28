@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WebMatrix.Data;
 
 namespace Homework
 {
@@ -30,6 +31,14 @@ namespace Homework
         public int GetHomeworkId()
         {
             return this.homework_id;
+        }
+
+        // Insert question into DB
+        public void InsertQuestion()
+        {
+            var db = Database.Open("HarryPotter");
+
+            var row = db.Execute("INSERT INTO questions (question, homework_id) VALUES (@0, @1)", this.question, this.homework_id);
         }
     }
 }
