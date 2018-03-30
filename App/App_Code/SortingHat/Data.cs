@@ -41,6 +41,11 @@ public class Data
         new Answer(8, 2, "There is no way you will go in the Dark Forest. You will get the teachers as quick as you can and tell them what is happening.",
             new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 2}, {"Ravenclaw", 4}, {"Slytherin", -1} }),
 
+        new Answer(9, 3, "", new Dictionary<string, int> { {"Gryffindor", 3}, {"Hufflepuff", 1}, {"Ravenclaw", 0}, {"Slytherin", -1} }),
+        new Answer(10, 3, "", new Dictionary<string, int> { {"Gryffindor", 1}, {"Hufflepuff", 3}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
+        new Answer(11, 3, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 3}, {"Slytherin", 1} }),
+        new Answer(12, 3, "", new Dictionary<string, int> { {"Gryffindor", -1}, {"Hufflepuff", 0}, {"Ravenclaw", 1}, {"Slytherin", 3} }),
+
         new Answer(13, 4, "Pomona Sprout", new Dictionary<string, int> { {"Gryffindor", 1}, {"Hufflepuff", 3}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
         new Answer(14, 4, "Minerva McGonagall", new Dictionary<string, int> { {"Gryffindor", 3}, {"Hufflepuff", 1}, {"Ravenclaw", 0}, {"Slytherin", -1} }),
         new Answer(15, 4, "Severus Snape", new Dictionary<string, int> { {"Gryffindor", -1}, {"Hufflepuff", 0}, {"Ravenclaw", 1}, {"Slytherin", 3} }),
