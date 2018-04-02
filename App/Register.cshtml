@@ -53,48 +53,50 @@
     }
 
 }
+
 @RenderPage("~/Layout/header.cshtml")
 
-<div class="container">
-    <div class="row">
-        <div class="auth-form-title">
-            <h1>Register</h1>
-        </div>
-        <div class="auth-inner">
-            <div class="auth-form">
-                <form method="post">
+<div class="background-special">
+    <div class="container">
+        <div class="row">
+            <div class="auth-form-title">
+                <h1>Register</h1>
+            </div>
+            <div class="auth-inner">
+                <div class="auth-form">
+                    <form method="post">
 
-                    <label class="top-validation-wrong">
-                        @Html.ValidationSummary("Gebruiker niet aangemaakt, probeer het overnieuw", excludeFieldErrors: true, htmlAttributes: null)
-                    </label>
+                        <label class="top-validation-wrong">
+                            @Html.ValidationSummary("Gebruiker niet aangemaakt, probeer het overnieuw", excludeFieldErrors: true, htmlAttributes: null)
+                        </label>
 
-                    <div class="form-details">
-                        <label class="firstname">
-                            <input type="text" name="firstname" placeholder="Firstname" id="firstname" value="@Request.Form["firstname"]">
-                        </label>
-                        <label class="validation-wrong">@Html.ValidationMessage("firstname")</label>
-                        <label class="lastname">
-                            <input type="text" name="lastname" placeholder="Last Name" id="lastname" value="@Request.Form["lastname"]">
-                        </label>
-                        <label class="validation-wrong">@Html.ValidationMessage("lastname")</label>
-                        <label class="user">
-                            <input type="text" name="username" placeholder="Username" id="username" value="@Request.Form["username"]">
-                        </label>
-                        <label class="validation-wrong">@Html.ValidationMessage("username")</label>
-                        <label class="mail">
-                            <input type="text" name="mail" placeholder="E-mail" id="mail" value="@Request.Form["mail"]">
-                        </label>
-                        <label class="validation-wrong">@Html.ValidationMessage("mail")</label>
-                        <label class="password">
-                            <input type="password" name="password" placeholder="Password" id="password" value="@Request.Form["password"]">
-                        </label>
-                        <label class="validation-wrong">@Html.ValidationMessage("password")</label>
-                    </div>
-                    <button type="submit" class="form-btn">Register</button>
-                </form>
+                        <div class="form-details">
+                            <label class="firstname">
+                                <input type="text" name="firstname" placeholder="Firstname" id="firstname" value="@Request.Form["firstname"]">
+                            </label>
+                            <label class="validation-wrong">@Html.ValidationMessage("firstname")</label>
+                            <label class="lastname">
+                                <input type="text" name="lastname" placeholder="Last Name" id="lastname" value="@Request.Form["lastname"]">
+                            </label>
+                            <label class="validation-wrong">@Html.ValidationMessage("lastname")</label>
+                            <label class="user">
+                                <input type="text" name="username" placeholder="Username" id="username" value="@Request.Form["username"]">
+                            </label>
+                            <label class="validation-wrong">@Html.ValidationMessage("username")</label>
+                            <label class="mail">
+                                <input type="text" name="mail" placeholder="E-mail" id="mail" value="@Request.Form["mail"]">
+                            </label>
+                            <label class="validation-wrong">@Html.ValidationMessage("mail")</label>
+                            <label class="password">
+                                <input type="password" name="password" placeholder="Password" id="password" value="@Request.Form["password"]">
+                            </label>
+                            <label class="validation-wrong">@Html.ValidationMessage("password")</label>
+                        </div>
+                        <button type="submit" class="form-btn">Register</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 @RenderPage("~/Layout/footer.cshtml")

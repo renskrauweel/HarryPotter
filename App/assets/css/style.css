@@ -17,6 +17,144 @@ p {
 	font-family: 'Times New Roman';
 }
 
+body {
+	/* The image used */
+	background-image: url("../Img/first.png");
+	/* Full height */
+	height: 100%;
+	/* Center and scale the image nicely */
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+nav.navbar.navbar-default {
+	background: none;
+	border: none;
+}
+nav.navbar.navbar-default ul.nav.navbar-nav li a {
+	color: #fff;
+	font-family: 'Cinzel', serif;
+	font-size: 20px;
+}
+	nav.navbar.navbar-default ul.nav.navbar-nav li a:hover {
+		color: #fff;
+	}
+div.auth-form-title h1 {
+	color: #fff;
+}
+div.auth-inner div.auth-form form div.form-details label input {
+	color: #fff;
+	font-family: 'Open Sans', sans-serif;
+}
+div.auth-inner div.auth-form form button.form-btn {
+	background: transparent;
+	border: 3px solid #fff;
+	font-family: 'Cinzel', serif;
+	font-size: 20px;
+	font-weight: bold;
+}
+/* Default page */
+html body div.default-container {
+	margin: 0 auto;
+	width: 70%;
+	height: 100%;
+}
+div.upper-class-1 {
+	width: 100%;
+	height: auto;
+}
+div.upper-class-1 h1 {
+	text-align: center;
+	font-size: 72px;
+}
+div.upper-class-1 img {
+	max-width: 100%;
+	margin-top: 75px;
+	margin-bottom: 25px;
+}
+div.upper-class-2 {
+	width: 100%;
+	height: auto;
+	text-align: center;
+	color: #e3e3e3;
+	font-size: 16px;
+	font-family: 'Cinzel', serif;
+}
+div.upper-class-3 {
+	width: 100%;
+	height: auto;
+	margin-bottom: 50px;
+}
+div.hp-text {
+	text-align: center;
+	font-family: 'Cinzel', serif;
+	color: #666;
+	font-size: 42px;
+}
+div.hp-text div.hp-color {
+	display: inline;
+	color: #d7d7d7;
+}
+div .button-right {
+	width: 49%;
+	float: left;
+	margin-bottom:40px;
+}
+div .button-left {
+	width: 49%;
+	float: left;
+	margin-bottom: 40px;
+}
+a.btn-register {
+	float: right;
+}
+div.default-container div.upper-class-1 img {
+	width: 80%;
+	margin-left: 10%;
+}
+div.button-right a.btn-login,
+div.button-left a.btn-register {
+	width: 100%;
+	border: 4px solid white;
+	border-radius: 28px;
+	text-align: center;
+	font-size: 25px;
+	color: #fff;
+	display: inline-block;
+	min-width: 50px;
+	width: 62%;
+	margin: 5px;
+	padding: 5px 10px;
+	text-decoration: none;
+	font-family: 'Cinzel', serif;
+}
+@media screen and (max-width: 960px) {
+	body div.button-right a.btn-login,
+	body div.button-left a.btn-register {
+		width: 90%;
+	}
+}
+@media screen and (max-width: 500px) {
+	body div.button-right a.btn-login,
+	body div.button-left a.btn-register {
+		width: 100%;
+		margin: 10px 0;
+	}
+	div.upper-class-2 {
+		display: none;
+	}
+	div.upper-class-2 div.hp-text-small {
+		color: #fff;
+	}
+	div.button-left,
+	div.button-right {
+		float: none;
+		width: 100%;
+	}
+	div.default-container div.upper-class-1 img {
+		width: 100%;
+		margin-left: 0;
+	}
+}
 /* Navigation style */
 body .navbar {
 	border-radius: 0;
@@ -151,14 +289,14 @@ label.wishlist_code input#wishlist_code {
 label.validation-wrong span {
 	text-align: left;
 	display: block;
-	color: red;
+	color: #ff5e5e;
 	margin-left: 50px;
 }
 
 label.top-validation-wrong {
 	text-align: center;
 	display: block;
-	color: red;
+	color: #ff5e5e;
 }
 
 body label.top-validation-wrong div.validation-summary-errors ul li {

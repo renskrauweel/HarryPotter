@@ -11,6 +11,8 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lobster|UnifrakturCook:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -41,25 +43,28 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-default">
         <!-- Check for session, to decide which navigation to show -->
-        @if (Session["id_user"] == null) 
+        @if (Session["id_user"] == null)
         {
-            <ul class="nav navbar-nav">
-                <li><a href="~/Login.cshtml">Login</a></li>
-                <li><a href="~/Register.cshtml">Registreer</a></li>
-            </ul>
+            <nav class="navbar navbar-default">
+                <ul class="nav navbar-nav ">
+                    <li><a href="~/Login.cshtml">Login</a></li>
+                    <li><a href="~/Register.cshtml">Registreer</a></li>
+                </ul>
+            </nav>
         }
         else
         {
-            <ul class="nav navbar-nav">
-                <li><a href="~/Homepage">Home</a></li>
-                <li><a href="~/Profile">Profile</a></li>
-                <li><a href="~/Classes">Classes</a></li>
-                <li><a href="~/Management">Management</a></li>
-                <li><a href="~/Logout">Logout</a></li>
-            </ul>
+            <nav class="navbar navbar-default">
+                <ul class="nav navbar-nav">
+                    <li><a href="~/Homepage">Home</a></li>
+                    <li><a href="~/Profile">Profile</a></li>
+                    <li><a href="~/Classes">Classes</a></li>
+                    <li><a href="~/Management">Management</a></li>
+                    <li><a href="~/Logout">Logout</a></li>
+                </ul>
+            </nav>
         }
 
-    </nav>
+              
 
