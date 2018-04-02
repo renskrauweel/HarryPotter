@@ -4,7 +4,19 @@
     // Check for session
     if (Session["id_user"] != null)
     {
-        Response.Redirect("~/Profile.cshtml");
+        int userId = Convert.ToInt32(Session["id_user"]);
+        User user = new global::User();
+        user = user.GetUser(userId);
+
+        if (user.GetHouseName() != null)
+        {
+            Response.Redirect("~/Profile.cshtml");
+        }
+
+        else
+        {
+            Response.Redirect("~/Sortinghat.cshtml");
+        }
     }
 
     // Validation requirefield
@@ -34,7 +46,22 @@
         {
             // Set session and redirect
             Session["id_user"] = setCookie.user_id;
-            Response.Redirect("~/Profile.cshtml");
+            if (Session["id_user"] != null)
+            {
+                int userId = Convert.ToInt32(Session["id_user"]);
+                User user = new global::User();
+                user = user.GetUser(userId);
+
+                if (user.GetHouseName() != null)
+                {
+                    Response.Redirect("~/Profile.cshtml");
+                }
+
+                else
+                {
+                    Response.Redirect("~/Sortinghat.cshtml");
+                }
+            }
         }
     }
 }
