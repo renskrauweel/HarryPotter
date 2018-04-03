@@ -62,7 +62,7 @@ public class Data
         new Answer(15, 4, "Severus Snape", new Dictionary<string, int> { {"Gryffindor", -1}, {"Hufflepuff", 0}, {"Ravenclaw", 1}, {"Slytherin", 3} }),
         new Answer(16, 4, "Filius Flitwick", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 3}, {"Slytherin", 1} }),
         
-        new Answer(17, 5, "A Want that will make you the most powerful wizzard ever.", new Dictionary<string, int> { {"Gryffindor", 2}, {"Hufflepuff", 1}, {"Ravenclaw", 0}, {"Slytherin", 2} }),
+        new Answer(17, 5, "A Wand that will make you the most powerful wizzard ever.", new Dictionary<string, int> { {"Gryffindor", 2}, {"Hufflepuff", 1}, {"Ravenclaw", 0}, {"Slytherin", 2} }),
         new Answer(18, 5, "A book that grants you all the wisdom.", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 1}, {"Ravenclaw", 4}, {"Slytherin", -1} }),
         new Answer(19, 5, "A broomstick that will make you the fastest in the air.", new Dictionary<string, int> { {"Gryffindor", 3}, {"Hufflepuff", 1}, {"Ravenclaw", 0}, {"Slytherin", 2} }),
         new Answer(20, 5, "A flask with water that makes you immortal", new Dictionary<string, int> { {"Gryffindor", 2}, {"Hufflepuff", 1}, {"Ravenclaw", 0}, {"Slytherin", 3} }),
