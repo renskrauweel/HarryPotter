@@ -12,20 +12,23 @@ namespace Homework
         private int question_id;
         private string answer;
         private int points;
+        private int homework_id;
 
-        public Answer(int answer_id, int question_id, string answer, int points)
+        public Answer(int answer_id, int question_id, string answer, int points, int homework_id)
         {
             this.answer_id = answer_id;
             this.question_id = question_id;
             this.answer = answer;
             this.points = points;
+            this.homework_id = homework_id;
         }
 
-        public Answer(int question_id, string answer, int points)
+        public Answer(int question_id, string answer, int points, int homework_id)
         {
             this.question_id = question_id;
             this.answer = answer;
             this.points = points;
+            this.homework_id = homework_id;
         }
 
         public Answer()
@@ -50,13 +53,17 @@ namespace Homework
         {
             return this.points;
         }
+        public int GetHomeworkId()
+        {
+            return this.homework_id;
+        }
 
         // Insert answer into DB
         public void InsertAnswer()
         {
             var db = Database.Open("HarryPotter");
 
-            var row = db.Execute("INSERT INTO answers (question_id, answer, points) VALUES (@0, @1, @2)", this.question_id, this.answer, this.points);
+            var row = db.Execute("INSERT INTO answers (question_id, answer, points, homework_id) VALUES (@0, @1, @2, @3)", this.question_id, this.answer, this.points, this.homework_id);
 
             db.Dispose();
         }
