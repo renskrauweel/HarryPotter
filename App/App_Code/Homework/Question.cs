@@ -21,7 +21,7 @@ namespace Homework
 
             // Fetch answers from DB
             var db = Database.Open("HarryPotter");
-            var rows = db.Query("SELECT * FROM answers WHERE question_id = @0", this.question_id);
+            var rows = db.Query("SELECT * FROM answers WHERE question_id = @0 AND homework_id = @1", this.question_id, this.homework_id);
             db.Dispose();
 
             foreach (var row in rows)
@@ -29,7 +29,8 @@ namespace Homework
                 int answerId = (int)row["answer_id"];
                 int questionId = (int)row["question_id"];
                 int points = (int)row["points"];
-                this.answers.Add(new Answer(answerId, questionId, row["answer"], points));
+                int homeworkId = (int)row["homework_id"];
+                this.answers.Add(new Answer(answerId, questionId, row["answer"], points, homeworkId));
             }
         }
 
@@ -59,6 +60,19 @@ namespace Homework
             var row = db.Execute("INSERT INTO questions (question, homework_id) VALUES (@0, @1)", this.question, this.homework_id);
 
             db.Dispose();
+        }
+
+        // Fetch highest question_id from DB
+        public static int GetMaxQuestionId()
+        {
+            var db = Database.Open("HarryPotter");
+            var row = db.QueryValue("SELECT MAX(question_id) FROM questions");
+            db.Dispose();
+
+            if (row.GetType() == typeof(DBNull))
+                return 0;
+            row = Convert.ToInt32(row);
+            return row;
         }
     }
 }

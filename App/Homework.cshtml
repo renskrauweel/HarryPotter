@@ -29,6 +29,7 @@
 @RenderPage("~/Layout/Header.cshtml")
 
 <div class="container">
+    <h1>@homework.GetHomeworkDescription()</h1>
     <form method="POST" id="form">
         @{
             int count = 0;

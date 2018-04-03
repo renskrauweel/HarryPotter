@@ -61,14 +61,14 @@
             if (s.ToString().Contains("answer"))
             {
                 string[] tokens = s.ToString().Split('_');
-                lastQuestionId = tokens.ElementAt(1).AsInt();
+                lastQuestionId = tokens.ElementAt(1).AsInt() + Question.GetMaxQuestionId();
                 lastAnswer = Request.Params[s];
             }
             if (s.ToString().Contains("scoring"))
             {
                 string[] tokens = s.ToString().Split('_');
                 lastQuestionId = tokens.ElementAt(1).AsInt();
-                answers.Add(new Answer(lastQuestionId, lastAnswer, Request.Params[s].AsInt()));
+                answers.Add(new Answer(lastQuestionId, lastAnswer, Request.Params[s].AsInt(), homeworkId));
             }
         }
 
