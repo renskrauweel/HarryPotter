@@ -2,3 +2,17 @@
 body {
 	background-image: none;
 }
+
+/* Navbar */
+.navbar-custom {
+    background-color: #0e1a40;
+}
+
+.nav.navbar-nav li a {
+    color: #ffffff;
+    font-family: 'Cinzel', serif;
+}
+
+.nav.navbar-nav li a:hover {
+    background-color: #1a472a;
+}

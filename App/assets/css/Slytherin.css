@@ -1,12 +1,20 @@
-/* Navbar */
-.navbar-custom {
-    background-color: #ffffff;
-}
-
-.nav.navbar-nav li a {
-    color: #aaaaaa;
-}
 /* Body background */
 body {
 	background-image: none;
 }
+
+/* Navbar */
+.navbar-custom {
+    background-color: #005416;
+}
+
+.nav.navbar-nav li a {
+    color: #ffffff;
+    font-family: 'Cinzel', serif;
+}
+
+.nav.navbar-nav li a:hover {
+    background-color: #1a472a;
+}
+
+
