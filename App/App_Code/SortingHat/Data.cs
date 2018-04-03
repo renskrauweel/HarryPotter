@@ -21,7 +21,11 @@ public class Data
         new Question(6, "6. At the Duelling club you have been challenged a Wizard's duel. You accept the challenge. You bow and start the duel, but what is the first thing you do?"),
         new Question(7, "7. You see that Frank is getting bullied by Devin. Frank is really insecure and has really big ears. What do you do?"),
         new Question(8, "8. Which of these sports do you like the most"),
-        new Question(9, "9. "),
+        new Question(9, "9. Which one of these clases do you like the most?"),
+        new Question(10, "10."),
+        new Question(11, "11."),
+        new Question(12, "12. You got homework that needs to be done by tomorrow, but also you have a Quidditch match tomorrow. What do you do?"),
+
     };
 
     private static List<Answer> answers = new List<Answer>
@@ -58,7 +62,7 @@ public class Data
         new Answer(15, 4, "Severus Snape", new Dictionary<string, int> { {"Gryffindor", -1}, {"Hufflepuff", 0}, {"Ravenclaw", 1}, {"Slytherin", 3} }),
         new Answer(16, 4, "Filius Flitwick", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 3}, {"Slytherin", 1} }),
         
-        new Answer(17, 5, "A Want that will make you the most powerful wizzard ever.", new Dictionary<string, int> { {"Gryffindor", 2}, {"Hufflepuff", 1}, {"Ravenclaw", 0}, {"Slytherin", 2} }),
+        new Answer(17, 5, "A Wand that will make you the most powerful wizzard ever.", new Dictionary<string, int> { {"Gryffindor", 2}, {"Hufflepuff", 1}, {"Ravenclaw", 0}, {"Slytherin", 2} }),
         new Answer(18, 5, "A book that grants you all the wisdom.", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 1}, {"Ravenclaw", 4}, {"Slytherin", -1} }),
         new Answer(19, 5, "A broomstick that will make you the fastest in the air.", new Dictionary<string, int> { {"Gryffindor", 3}, {"Hufflepuff", 1}, {"Ravenclaw", 0}, {"Slytherin", 2} }),
         new Answer(20, 5, "A flask with water that makes you immortal", new Dictionary<string, int> { {"Gryffindor", 2}, {"Hufflepuff", 1}, {"Ravenclaw", 0}, {"Slytherin", 3} }),
@@ -70,7 +74,8 @@ public class Data
             new Dictionary<string, int> { {"Gryffindor", 1}, {"Hufflepuff", -1}, {"Ravenclaw", 0}, {"Slytherin", 3} }),
         new Answer(24, 6, "You use Expelliarmus to disarm your opponent", new Dictionary<string, int> { {"Gryffindor", 0}, { "Hufflepuff", 3} , {"Ravenclaw", 2}, {"Slytherin", -1} }),
 
-        new Answer(25, 7, "You don't want to get involved, so you ignore it and walk away.", new Dictionary<string, int> { {"Gryffindor", -1}, {"Hufflepuff", 1}, {"Ravenclaw", 3}, {"Slytherin", 1 } }),
+        new Answer(25, 7, "You don't want to get involved, so you ignore it and walk away.", 
+            new Dictionary<string, int> { {"Gryffindor", -1}, {"Hufflepuff", 1}, {"Ravenclaw", 3}, {"Slytherin", 1 } }),
         new Answer(26, 7, "Screw Frank he is always annoying in class, so you join Devin and say to Frank: Hey Franky, go flap your ears, hopefully you'll fly away.", 
             new Dictionary<string, int> { {"Gryffindor", -1}, {"Hufflepuff", 0}, {"Ravenclaw", 1}, {"Slytherin", 3} }),
         new Answer(27, 7, "Stand up for Frank and you push Devin on the ground and tell him to leave Frank alone and get of here.",
@@ -83,26 +88,25 @@ public class Data
         new Answer(31, 8, "Wizard's Chess", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 1}, {"Ravenclaw", 3}, {"Slytherin", 0} }),
         new Answer(32, 8, "Wizard's Duelling", new Dictionary<string, int> { {"Gryffindor", 3}, {"Hufflepuff", 0}, {"Ravenclaw", -1}, {"Slytherin", 3} }),
 
-        new Answer(33, 9, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-        new Answer(34, 9, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-        new Answer(35, 9, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-        new Answer(36, 9, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
+        new Answer(33, 9, "Astronomy", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 3}, {"Slytherin", 0} }),
+        new Answer(34, 9, "Charms", new Dictionary<string, int> { {"Gryffindor", 3}, {"Hufflepuff", 1}, {"Ravenclaw", 1}, {"Slytherin", 0} }),
+        new Answer(35, 9, "Dark Arts", new Dictionary<string, int> { {"Gryffindor", 1}, {"Hufflepuff", -1}, {"Ravenclaw", 0}, {"Slytherin", 3} }),
+        new Answer(36, 9, "Herbology", new Dictionary<string, int> { {"Gryffindor", 1}, {"Hufflepuff", 3}, {"Ravenclaw", 0}, {"Slytherin", -1} }),
 
-        new Answer(37, 10, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-        new Answer(38, 10, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-        new Answer(39, 10, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-        new Answer(40, 10, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
+        new Answer(37, 10, "You do the homework you need to do now.", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 2}, {"Ravenclaw", 2}, {"Slytherin", 0} }),
+        new Answer(38, 10, "You go to the training of Quidditch now, so you are ready for the match tomorrow.", new Dictionary<string, int> { {"Gryffindor", 2}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 2} }),
 
+        new Answer(39, 11, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
+        new Answer(40, 11, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
         new Answer(41, 11, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
         new Answer(42, 11, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-        new Answer(43, 11, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-        new Answer(44, 11, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
 
+        new Answer(43, 12, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
+        new Answer(44, 12, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
         new Answer(45, 12, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
         new Answer(46, 12, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-        new Answer(47, 12, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-        new Answer(48, 12, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-        
+
+
     };
 
     // Get all questions

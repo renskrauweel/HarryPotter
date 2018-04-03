@@ -2,21 +2,20 @@
 body {
 	background-color: #efefef;
 }
-
+/* Harry Potter font */
 @font-face {
 	font-family: 'Harry';
 	src: url("../fonts/HARRY.TTF");
 }
-
 h1 {
 	font-family: Harry;
 	font-size: 56px;
 }
-
 p {
 	font-family: 'Times New Roman';
 }
 
+/* Body background */
 body {
 	/* The image used */
 	background-image: url("../Img/first.png");
@@ -26,6 +25,8 @@ body {
 	background-repeat: no-repeat;
 	background-size: cover;
 }
+
+/* Custom navigation */
 nav.navbar.navbar-default {
 	background: none;
 	border: none;
@@ -38,20 +39,14 @@ nav.navbar.navbar-default ul.nav.navbar-nav li a {
 	nav.navbar.navbar-default ul.nav.navbar-nav li a:hover {
 		color: #fff;
 	}
-div.auth-form-title h1 {
-	color: #fff;
+
+nav.navbar.navbar-default.session {
+	background-color: #f8f8f8;
+	border-color: #e7e7e7;
 }
-div.auth-inner div.auth-form form div.form-details label input {
-	color: #fff;
-	font-family: 'Open Sans', sans-serif;
-}
-div.auth-inner div.auth-form form button.form-btn {
-	background: transparent;
-	border: 3px solid #fff;
-	font-family: 'Cinzel', serif;
-	font-size: 20px;
-	font-weight: bold;
-}
+	nav.navbar.navbar-default.session ul.nav.navbar-nav li a {
+		color: #5f5d5d;
+	}
 /* Default page */
 html body div.default-container {
 	margin: 0 auto;
@@ -75,7 +70,7 @@ div.upper-class-2 {
 	width: 100%;
 	height: auto;
 	text-align: center;
-	color: #e3e3e3;
+	color: #efefef;
 	font-size: 16px;
 	font-family: 'Cinzel', serif;
 }
@@ -168,12 +163,9 @@ div.profile-top div.profile-background {
 	max-height: 300px;
 	overflow: hidden;
 }
-
 div.profile-top div.profile-background img#background-profile {
 	width: 100%;
 }
-
-
 body .profile-top #person-profile {
 	height: 110px;
 	width: 110px;
@@ -192,32 +184,45 @@ body .profile-top #person-profile {
 	.btn.btn-custom-primary:hover {
 		background-color: #c0392b;
 	}
-
 .homepage-header .login-button {
 	position: absolute;
 	right: 10px;
 	top: 10px;
 }
-
 .home h1 {
 	text-align: center
 }
-
 
 /* Set black background color, white text and some padding */
 footer {
 	color: dimgrey;
 }
 
+/* Custom form */
+div.auth-form-title h1 {
+	color: #fff;
+}
+div.auth-inner div.auth-form form div.form-details label input::placeholder,
+div.auth-inner div.auth-form form div.form-details label input {
+	color: #fff;
+	opacity: 1;
+	font-family: 'Open Sans', sans-serif;
+}
+div.auth-inner div.auth-form form button.form-btn {
+	background: transparent;
+	border: 3px solid #fff;
+	font-family: 'Cinzel', serif;
+	font-size: 20px;
+	font-weight: bold;
+}
+
 /* Login design */
 .auth-form-title {
 	text-align: center;
 }
-
 .auth-form {
 	text-align: center;
 }
-
 	.auth-form input {
 		-moz-border-bottom-colors: none;
 		-moz-border-left-colors: none;
@@ -236,19 +241,16 @@ footer {
 		font-size: 17px;
 		max-width: 550px;
 	}
-
 label.add-to-list input#add-to-list,
 label.listname input#listname,
 label.wishlist_code input#wishlist_code {
 	border-style: solid;
 	border-width: 1px;
 }
-
 .auth-form label {
 	margin-bottom: 5px;
 	width: 100%;
 }
-
 .auth-signup .tab-content {
 	background: #ffffff none repeat scroll 0 0;
 	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
@@ -256,7 +258,6 @@ label.wishlist_code input#wishlist_code {
 	margin-top: -8px;
 	width: 100%;
 }
-
 .form-btn {
 	background: #e74c3c;
 	border: medium none;
@@ -272,11 +273,9 @@ label.wishlist_code input#wishlist_code {
 	-moz-box-shadow: 0 2px 8px #d2d2d2;
 	-webkit-box-shadow: 0 2px 8px #d2d2d2;
 }
-
 .form-details {
 	padding: 35px 0;
 }
-
 .tab-content .tab-pane {
 	padding: 35px 0;
 }
@@ -285,20 +284,17 @@ label.wishlist_code input#wishlist_code {
 .validation-wrong {
 	max-width: 550px;
 }
-
 label.validation-wrong span {
 	text-align: left;
 	display: block;
 	color: #ff5e5e;
 	margin-left: 50px;
 }
-
 label.top-validation-wrong {
 	text-align: center;
 	display: block;
 	color: #ff5e5e;
 }
-
 body label.top-validation-wrong div.validation-summary-errors ul li {
 	list-style-type: initial;
 }
@@ -329,4 +325,9 @@ body label.top-validation-wrong div.validation-summary-errors ul li {
     background-color: #fff;
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
+}
+/* Container styling */
+
+.row {
+	margin: 50px 0;
 }
