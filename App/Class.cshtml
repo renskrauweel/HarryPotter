@@ -59,7 +59,7 @@
                 @foreach (Homework.Homework homework in classroom.GetHomework())
     {
             <tr>
-                <td>@homework.GetHomeworkDescription()</td>
+                <td><a href="~/Homework?homework=@homework.GetClassId()">@homework.GetHomeworkDescription()</a></td>
                 <td>@homework.GetDeadline()</td>
                 <td>-</td>
             </tr>
