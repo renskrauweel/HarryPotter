@@ -23,8 +23,8 @@ public class Data
         new Question(8, "8. Which of these sports do you like the most"),
         new Question(9, "9. Which one of these clases do you like the most?"),
         new Question(10, "10. You got homework that needs to be done by tomorrow, but also you have a Quidditch match tomorrow. What do you do?"),
-        new Question(11, "11."),
-        new Question(12, "12."),
+        new Question(11, "11. If you we're to fight a dragon, which one would it be?"),
+        //new Question(12, "12."),
 
     };
 
@@ -96,16 +96,16 @@ public class Data
         new Answer(37, 10, "You do the homework you need to do now.", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 2}, {"Ravenclaw", 2}, {"Slytherin", 0} }),
         new Answer(38, 10, "You go to the training of Quidditch now, so you are ready for the match tomorrow.", new Dictionary<string, int> { {"Gryffindor", 2}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 2} }),
 
-        new Answer(39, 11, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-        new Answer(40, 11, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-        new Answer(41, 11, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-        new Answer(42, 11, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-
+        new Answer(39, 11, "The Welsh Green", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
+        new Answer(40, 11, "The Chinese Fireball", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
+        new Answer(41, 11, "Hungarian Horntail", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
+        new Answer(42, 11, "Swedish Short-Snout", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
+/*
         new Answer(43, 12, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
         new Answer(44, 12, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
         new Answer(45, 12, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
         new Answer(46, 12, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-
+        */
 
     };
 

@@ -85,11 +85,13 @@
                             List<Answer> answers = Data.GetAnswers(question.GetQuestionId());
 
                             <div id="question_@count" class="form-group">
+                                <img src="~/assets/img/Questions/@question.GetQuestionId()_.png"  />
                                 <h2>@question.GetQuestion()</h2>
 
                                 @foreach (Answer answer in answers)
                                 {
                                     <div class="radio">
+                                        <img src="~/assets/img/Answers/@answer.GetAnswerId()_.png" />
                                         <label><input type="radio" name="question_@answer.GetQuestionId()" value="@answer.GetAnswerId()">@answer.GetAnswer()</label>
                                     </div>
                                 }
