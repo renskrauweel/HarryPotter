@@ -73,6 +73,7 @@ namespace Homework
             var db = Database.Open("HarryPotter");
 
             var row = db.QueryValue("SELECT MAX(homework_id) FROM homework");
+            db.Dispose();
             if (row.GetType() == typeof(DBNull))
                 return 0;
             row = Convert.ToInt32(row);
@@ -85,6 +86,7 @@ namespace Homework
             var db = Database.Open("HarryPotter");
 
             var row = db.Execute("INSERT INTO homework (homework_description, class_id, deadline) VALUES (@0, @1, @2)", homework_description, class_id, deadline);
+            db.Dispose();
         }
 
         // Fetch the homework from DB

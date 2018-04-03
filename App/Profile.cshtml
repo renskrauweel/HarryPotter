@@ -18,6 +18,8 @@
     var firstname = db.QueryValue("SELECT firstname FROM users WHERE user_id = @0", user_id);
     var lastname = db.QueryValue("SELECT lastname FROM users WHERE user_id = @0", user_id);
     var house = db.QueryValue("SELECT house_name FROM houses WHERE house_id = @0", house_id);
+
+    db.Dispose();
 }
 
 @RenderPage("~/Layout/Header.cshtml")
