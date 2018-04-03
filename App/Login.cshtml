@@ -40,7 +40,7 @@
         if (setCookie == null)
         {
             // Error message if credentials are incorrect
-            ModelState.AddFormError("De ingevoerde gebruikersnaam of het ingevoerde wachtwoord is onjuist.");
+            ModelState.AddFormError("De ingevoerde gebruikersnaam of het ingevoerde wachtwoord is onjuist");
         }
         else
         {
@@ -74,24 +74,29 @@
             <div class="auth-form-title">
                 <h1>Login</h1>
             </div>
-            <div class="auth-inner">
-                <div class="auth-form">
-                    <form method="post">
-                        <div class="form-details">
-                            <label class="user">
-                                <input type="text" name="username" placeholder="Username" id="username" value="@Request.Form["username"]">
-                            </label>
-                            <label class="validation-wrong">@Html.ValidationMessage("username")</label>
-                            <label class="pass">
-                                <input type="password" name="password" placeholder="Password" id="password" value="@Request.Form["password"]">
-                            </label>
-                            <label class="validation-wrong">@Html.ValidationMessage("password")</label>
-                        </div>
-                        <button type="submit" class="form-btn">Login</button>
-                    </form>
+
+            <label class="top-validation-wrong">
+                @Html.ValidationSummary("Gebruiker niet ingelogd, probeer het overnieuw", excludeFieldErrors: true, htmlAttributes: null)
+             </label> 
+            
+                <div class="auth-inner">
+                    <div class="auth-form">
+                        <form method="post">
+                            <div class="form-details">
+                                <label class="user">
+                                    <input type="text" name="username" placeholder="Username" id="username" value="@Request.Form["username"]">
+                                </label>
+                                <label class="validation-wrong">@Html.ValidationMessage("username")</label>
+                                <label class="pass">
+                                    <input type="password" name="password" placeholder="Password" id="password" value="@Request.Form["password"]">
+                                </label>
+                                <label class="validation-wrong">@Html.ValidationMessage("password")</label>
+                            </div>
+                            <button type="submit" class="form-btn">Login</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </div>
+</div>
     </div>
 </div>
 @RenderPage("~/Layout/footer.cshtml")
