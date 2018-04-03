@@ -23,7 +23,7 @@ public class Data
         new Question(8, "8. Which of these sports do you like the most"),
         new Question(9, "9. Which one of these clases do you like the most?"),
         new Question(10, "10. You got homework that needs to be done by tomorrow, but also you have a Quidditch match tomorrow. What do you do?"),
-        new Question(11, "11. If you we're to fight a dragon, which one would it be?"),
+        new Question(11, "11. If you were to fight a dragon, which one would it be?"),
         //new Question(12, "12."),
 
     };

@@ -90,10 +90,15 @@
 
                                 @foreach (Answer answer in answers)
                                 {
-                                    <div class="radio">
-                                        <img src="~/assets/img/Answers/@answer.GetAnswerId()_.png" />
-                                        <label><input type="radio" name="question_@answer.GetQuestionId()" value="@answer.GetAnswerId()">@answer.GetAnswer()</label>
-                                    </div>
+                                <div class="radio">
+                                    <object data="~/assets/img/Answers/@answer.GetAnswerId()_.png" 
+                                        <style>img:before {background-image: url(/assets/img/Answers/5_.png);
+                                        </style>
+                                        <img src="foo.jpg" >
+                                        <img src="~/assets/img/Answers/@answer.GetAnswerId()_.gif" 
+                                    </object>
+                                    <label><input type="radio" name="question_@answer.GetQuestionId()" value="@answer.GetAnswerId()">@answer.GetAnswer()</label>
+                                </div>
                                 }
                                 @if (count > 1)
                                 {
