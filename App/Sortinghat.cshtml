@@ -84,35 +84,37 @@
                             // Get question's answers
                             List<Answer> answers = Data.GetAnswers(question.GetQuestionId());
 
-                            <div id="question_@count" class="form-group">
-                                <img src="~/assets/img/Questions/@question.GetQuestionId()_.png"  />
-                                <h2>@question.GetQuestion()</h2>
+                    <div id="question_@count" class="form-group">
+                        <object data="~/assets/img/Questions/@question.GetQuestionId()_.png">
+                            <img src="~/assets/img/blanco.png" />
+                        </object>
+                        <img src="" />
+                        <h2>@question.GetQuestion()</h2>
 
-                                @foreach (Answer answer in answers)
-                                {
-                                <div class="radio">
-                                    <object data="~/assets/img/Answers/@answer.GetAnswerId()_.png" 
-                                        <style>img:before {background-image: url(/assets/img/Answers/5_.png);
-                                        </style>
-                                        <img src="foo.jpg" >
-                                        <img src="~/assets/img/Answers/@answer.GetAnswerId()_.gif" 
-                                    </object>
-                                    <label><input type="radio" name="question_@answer.GetQuestionId()" value="@answer.GetAnswerId()">@answer.GetAnswer()</label>
-                                </div>
-                                }
-                                @if (count > 1)
-                                {
-                                    <span class="btn btn-primary" onclick="OpenQuestion(this, 'prev')">Previous question</span>
-                                }
-                                @if (count < questions.Count)
-                                {
-                                    <span class="btn btn-primary" onclick="OpenQuestion(this, 'next')">Next question</span>
-                                }
-                                @if (count == questions.Count)
-                                {
-                                    <input type="submit" onclick="return ValidateForm()" class="btn btn-success" value="Sort me!" />
-                                }
-                            </div>
+                        @foreach (Answer answer in answers)
+    {
+                    <div class="radio">
+                        <object data="~/assets/img/Answers/@answer.GetAnswerId()_.png">
+                            <object data="~/assets/img/Answers/@answer.GetAnswerId()_.gif">
+                                <img src="~/assets/img/blanco.png" />
+                            </object>
+                        </object>
+                        <label><input type="radio" name="question_@answer.GetQuestionId()" value="@answer.GetAnswerId()">@answer.GetAnswer()</label>
+                    </div>
+}
+                        @if (count > 1)
+    {
+                    <span class="btn btn-primary" onclick="OpenQuestion(this, 'prev')">Previous question</span>
+}
+                        @if (count < questions.Count)
+    {
+                    <span class="btn btn-primary" onclick="OpenQuestion(this, 'next')">Next question</span>
+}
+                        @if (count == questions.Count)
+    {
+                    <input type="submit" onclick="return ValidateForm()" class="btn btn-success" value="Sort me!" />
+}
+                    </div>
                         }
                     }
 

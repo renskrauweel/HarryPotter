@@ -18,13 +18,13 @@ public class Data
         new Question(3, "3. What would you do on your first day of Hogwarts?"),
         new Question(4, "4. Who of these people do you trust the most?"),
         new Question(5, "5. There are 4 relics in front of you which one would you pick?"),
-        new Question(6, "6. At the Duelling club you have been challenged a Wizard's duel. You accept the challenge. You bow and start the duel, but what is the first thing you do?"),
+        new Question(6, "6. What is the first thing you do when your doing a Wizard's Duel?"),
         new Question(7, "7. You see that Frank is getting bullied by Devin. Frank is really insecure and has really big ears. What do you do?"),
-        new Question(8, "8. Which of these sports do you like the most"),
+        new Question(8, "8. If you were to fight a dragon, which one would it be?"),
         new Question(9, "9. Which one of these clases do you like the most?"),
         new Question(10, "10. You got homework that needs to be done by tomorrow, but also you have a Quidditch match tomorrow. What do you do?"),
-        new Question(11, "11. If you were to fight a dragon, which one would it be?"),
-        //new Question(12, "12."),
+        new Question(11, "11. Which of these sports do you like the most"),
+        new Question(12, "12. There are 4 potions in front of you, which one of these would you take?"),
 
     };
 
@@ -83,10 +83,10 @@ public class Data
         new Answer(28, 7, "You ask some someone to get a teacher in case it escalates. Then you ask Devin to stop bullying Frank.", 
             new Dictionary<string, int> { {"Gryffindor", 1}, {"Hufflepuff", 3}, {"Ravenclaw", 0}, {"Slytherin", -1} }),
 
-        new Answer(29, 8, "Quidditch", new Dictionary<string, int> { {"Gryffindor", 1}, {"Hufflepuff", 3}, {"Ravenclaw", 0}, {"Slytherin", 1} }),
-        new Answer(30, 8, "The Triwizard Tournament", new Dictionary<string, int> { {"Gryffindor", 3}, {"Hufflepuff", 1}, {"Ravenclaw", -1}, {"Slytherin", 1} }),
-        new Answer(31, 8, "Wizard's Chess", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 1}, {"Ravenclaw", 3}, {"Slytherin", 0} }),
-        new Answer(32, 8, "Wizard's Duelling", new Dictionary<string, int> { {"Gryffindor", 3}, {"Hufflepuff", 0}, {"Ravenclaw", -1}, {"Slytherin", 3} }),
+        new Answer(29, 8, "A Common Welsh Green", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 1}, {"Slytherin", 3} }),
+        new Answer(30, 8, "A Chinese Fireball", new Dictionary<string, int> { {"Gryffindor", 1}, {"Hufflepuff", 3}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
+        new Answer(31, 8, "A Hungarian Horntail", new Dictionary<string, int> { {"Gryffindor", 3}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 1} }),
+        new Answer(32, 8, "A Swedish Short-Snout", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 1}, {"Ravenclaw", 3}, {"Slytherin", 0} }),
 
         new Answer(33, 9, "Astronomy", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 3}, {"Slytherin", 0} }),
         new Answer(34, 9, "Charms", new Dictionary<string, int> { {"Gryffindor", 3}, {"Hufflepuff", 1}, {"Ravenclaw", 1}, {"Slytherin", 0} }),
@@ -96,16 +96,15 @@ public class Data
         new Answer(37, 10, "You do the homework you need to do now.", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 2}, {"Ravenclaw", 2}, {"Slytherin", 0} }),
         new Answer(38, 10, "You go to the training of Quidditch now, so you are ready for the match tomorrow.", new Dictionary<string, int> { {"Gryffindor", 2}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 2} }),
 
-        new Answer(39, 11, "The Welsh Green", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-        new Answer(40, 11, "The Chinese Fireball", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-        new Answer(41, 11, "Hungarian Horntail", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-        new Answer(42, 11, "Swedish Short-Snout", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-/*
-        new Answer(43, 12, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-        new Answer(44, 12, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-        new Answer(45, 12, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-        new Answer(46, 12, "", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 0} }),
-        */
+        new Answer(39, 11, "Quidditch", new Dictionary<string, int> { {"Gryffindor", 1}, {"Hufflepuff", 3}, {"Ravenclaw", 0}, {"Slytherin", 1} }),
+        new Answer(40, 11, "The Triwizard Tournament", new Dictionary<string, int> { {"Gryffindor", 3}, {"Hufflepuff", 1}, {"Ravenclaw", -1}, {"Slytherin", 1} }),
+        new Answer(41, 11, "Wizard's Chess", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 1}, {"Ravenclaw", 3}, {"Slytherin", 0} }),
+        new Answer(42, 11, "Wizard's Duelling", new Dictionary<string, int> { {"Gryffindor", 3}, {"Hufflepuff", 0}, {"Ravenclaw", -1}, {"Slytherin", 3} }),
+
+        new Answer(43, 12, "Polyjuice potion (Shapeshifting potion)", new Dictionary<string, int> { {"Gryffindor", 3}, {"Hufflepuff", -1}, {"Ravenclaw", 0}, {"Slytherin", 1} }),
+        new Answer(44, 12, "Invisibility potion", new Dictionary<string, int> { {"Gryffindor", 1}, {"Hufflepuff", 0}, {"Ravenclaw", 0}, {"Slytherin", 3} }),
+        new Answer(45, 12, "Love potion", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 3}, {"Ravenclaw", 1}, {"Slytherin", 0} }),
+        new Answer(46, 12, "Felix Felicis potion (Liquid Luck potion)", new Dictionary<string, int> { {"Gryffindor", 0}, {"Hufflepuff", 1}, {"Ravenclaw", 3}, {"Slytherin", 0} }),
 
     };
 
