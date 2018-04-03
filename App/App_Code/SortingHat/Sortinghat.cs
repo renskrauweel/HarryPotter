@@ -37,6 +37,8 @@ public class Sortinghat
             var db = Database.Open("HarryPotter");
             
             db.Execute("UPDATE users SET house_id = @0 WHERE user_id = @1", houseId, userId);
+
+            db.Dispose();
         }
 
         return house;

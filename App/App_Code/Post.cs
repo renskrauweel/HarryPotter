@@ -58,5 +58,7 @@ public class Post
         var db = Database.Open("HarryPotter");
 
         db.Execute("INSERT INTO posts (user_id, class_id, content) VALUES (@0, @1, @2)", user_id, class_id, content);
+
+        db.Dispose();
     }
 }

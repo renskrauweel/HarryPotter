@@ -57,6 +57,8 @@ namespace Homework
             var db = Database.Open("HarryPotter");
 
             var row = db.Execute("INSERT INTO answers (question_id, answer, points) VALUES (@0, @1, @2)", this.question_id, this.answer, this.points);
+
+            db.Dispose();
         }
     }
 }

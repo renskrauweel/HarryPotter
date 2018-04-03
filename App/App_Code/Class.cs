@@ -35,6 +35,8 @@ public class Class
         {
             this.homework.Add(new Homework.Homework((int)row["homework_id"], row["homework_description"], (int)row["class_id"], (DateTime)row["deadline"]));
         }
+
+        db.Dispose();
     }
 
     // Getters
@@ -55,6 +57,9 @@ public class Class
             User user = new User();
             return user.GetUser(this.teacher_id);
         }
+
+        db.Dispose();
+
         return new User();
     }
     public string GetClassdescription()
@@ -88,6 +93,8 @@ public class Class
             classes.Add(new Class(classId, row["classname"], teacherId, row["class_description"]));
         }
 
+        db.Dispose();
+
         return classes;
     }
 
@@ -109,6 +116,8 @@ public class Class
             int classId = (int)row["class_id"];
             classes.Add(new Class(classId, row["classname"], teacherId, row["class_description"]));
         }
+
+        db.Dispose();
 
         return classes;
     }
@@ -133,6 +142,8 @@ public class Class
 
         var row = db.QuerySingle("SELECT * FROM classes_users WHERE user_id = @0 AND class_id = @1", userId, classId);
 
+        db.Dispose();
+
         if (row == null)
             return false;
 
@@ -145,6 +156,8 @@ public class Class
         var db = Database.Open("HarryPotter");
 
         var row = db.QuerySingle("SELECT * FROM classes WHERE class_id = @0", classId);
+
+        db.Dispose();
 
         int teacherId = 0;
         if (row["teacher_id"] != null)

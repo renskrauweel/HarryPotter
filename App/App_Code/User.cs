@@ -41,6 +41,9 @@ public class User
         var db = Database.Open("HarryPotter");
 
         var row = db.QuerySingle("SELECT user_id, username, firstname, lastname, email, house_id, role_id FROM users WHERE user_id = @0", user_id);
+
+        db.Dispose();
+
         if (row != null)
         {
             int userId = row["user_id"];
@@ -59,7 +62,11 @@ public class User
     {
         var db = Database.Open("HarryPotter");
 
-        return db.QueryValue("SELECT house_name FROM houses WHERE house_id = @0", this.house_id);
+        string housename = db.QueryValue("SELECT house_name FROM houses WHERE house_id = @0", this.house_id);
+
+        db.Dispose();
+
+        return housename;
     }
 
     // Fetch role
@@ -67,6 +74,10 @@ public class User
     {
         var db = Database.Open("HarryPotter");
 
-        return db.QueryValue("SELECT role_name FROM roles WHERE role_id = @0", this.role_id);
+        string role = db.QueryValue("SELECT role_name FROM roles WHERE role_id = @0", this.role_id);
+
+        db.Dispose();
+
+        return role;
     }
 }

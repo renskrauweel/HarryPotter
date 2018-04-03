@@ -1,0 +1,60 @@
+﻿@using WebMatrix.Data
+
+@{
+    // Check for session
+    if (Session["id_user"] == null)
+    {
+        Response.Redirect("~/Login.cshtml");
+    }
+
+    int userId = Convert.ToInt32(Session["id_user"]);
+    int homeworkId = 0;
+    if (Request.QueryString["homework"] != null)
+    {
+        homeworkId = Request.QueryString["homework"].AsInt();
+        // Redirect if false class
+        if (homeworkId == 0)
+        {
+            Response.Redirect("~/Classes");
+        }
+    }
+
+    // Fetch the homework
+    Homework.Homework homework = Homework.Homework.GetHomework(homeworkId);
+
+    // Fetch questions
+    List<Homework.Question> questions = homework.GetQuestions();
+}
+
+@RenderPage("~/Layout/Header.cshtml")
+
+<div class="container">
+    <form method="POST" id="form">
+        @{
+            int count = 0;
+            foreach (Homework.Question question in questions)
+            {
+                count++;
+                // Get question's answers
+                List<Homework.Answer> answers = question.GetAnswers();
+
+                <div id="question_@count" class="form-group">
+                    <h2>@question.GetQuestion()</h2>
+
+                    @foreach (Homework.Answer answer in answers)
+                    {
+                        <div class="radio">
+                            <label><input type="radio" name="question_@answer.GetQuestionId()" value="@answer.GetAnswerId()">@answer.GetAnswer()</label>
+                        </div>
+                    }
+                    
+                </div>
+                
+            }
+        }
+
+    </form>
+
+</div>
+
+@RenderPage("~/Layout/Footer.cshtml");
