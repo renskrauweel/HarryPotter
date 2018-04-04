@@ -41,87 +41,81 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-10">
-            <h1>Welcome</h1>
-            <h3>Sortinghat</h3>
+            <div class="col-sm-10">
+                <h1>Welcome in the Sortinghat</h1>
 
-            <div id="intro">
-                <div class="content-container">
-                    <p>I am the Sortinghat from Hogwarts School of Witchcraft and Hocus Pocus. Also this year I sort all students to their true house.</p>
+                <div id="intro">
+                    <div class="content-container">
+                        <p>I am the Sortinghat from Hogwarts School of Witchcraft and Hocus Pocus. Also this year I sort all students to their true house.</p>
+                    </div>
                 </div>
-            </div>
 
-            @if (houseChosen != null)
-            {
-                <h3>Your house: @houseChosen</h3>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Gryffindor</th>
-                            <th scope="col">Hufflepuff</th>
-                            <th scope="col">Ravenclaw</th>
-                            <th scope="col">Slytherin</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>@pointsGryffindor</td>
-                            <td>@pointsHufflepuff</td>
-                            <td>@pointsRavenclaw</td>
-                            <td>@pointsSlytherin</td>
-                        </tr>
-                    </tbody>
-                </table>
-            }
-            else
-            {
-                <form method="POST" id="form">
+                @if (houseChosen != null)
+                {
+                    <h3>Your house: @houseChosen</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Gryffindor</th>
+                                <th scope="col">Hufflepuff</th>
+                                <th scope="col">Ravenclaw</th>
+                                <th scope="col">Slytherin</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@pointsGryffindor</td>
+                                <td>@pointsHufflepuff</td>
+                                <td>@pointsRavenclaw</td>
+                                <td>@pointsSlytherin</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <a href="~/Profile">Profile page</a>
+                }
+                else
+                {
+                    <form method="POST" id="form">
                     @{
-                        int count = 0;
-                        foreach (Question question in questions)
-                        {
-                            count++;
-                            // Get question's answers
-                            List<Answer> answers = Data.GetAnswers(question.GetQuestionId());
+                            int count = 0;
+                            foreach (Question question in questions)
+                            {
+                                count++;
+                                // Get question's answers
+                                List<Answer> answers = Data.GetAnswers(question.GetQuestionId());
 
-                    <div id="question_@count" class="form-group">
-                        <object data="~/assets/img/Questions/@question.GetQuestionId()_.png" class="img-question">
-                            <img src="~/assets/img/blanco.png" style="display: none;" />
-                        </object>
-                        <img src="" />
-                        <h2>@question.GetQuestion()</h2>
+                                <div id="question_@count" class="form-group">
+                                    <img alt="" src="~/assets/img/Questions/@question.GetQuestionId()_.png" class="img-question">
 
-                        @foreach (Answer answer in answers)
-    {
-                    <div class="radio">
-                        <object data="~/assets/img/Answers/@answer.GetAnswerId()_.png" class="img-answer">
-                            <object data="~/assets/img/Answers/@answer.GetAnswerId()_.gif" class="gif-answer">
-                                <img src="~/assets/img/blanco.png" />
-                            </object>
-                        </object>
-                        <label><input type="radio" name="question_@answer.GetQuestionId()" value="@answer.GetAnswerId()">@answer.GetAnswer()</label>
-                    </div>
-}
-                        @if (count > 1)
-    {
-                    <span class="btn btn-primary" onclick="OpenQuestion(this, 'prev')">Previous question</span>
-}
-                        @if (count < questions.Count)
-    {
-                    <span class="btn btn-primary" onclick="OpenQuestion(this, 'next')">Next question</span>
-}
-                        @if (count == questions.Count)
-    {
-                    <input type="submit" onclick="return ValidateForm()" class="btn btn-success" value="Sort me!" />
-}
-                    </div>
+                                    <h2>@question.GetQuestion()</h2>
+
+                                    @foreach (Answer answer in answers)
+                                    {
+                                    <div class="radio">
+                                        <img alt="" src="~/assets/img/Answers/@answer.GetAnswerId()_.png" class="img-answer">
+                                        <label><input type="radio" name="question_@answer.GetQuestionId()" value="@answer.GetAnswerId()">@answer.GetAnswer()</label>
+                                    </div>
+                                    }
+                                    @if (count > 1)
+                                    {
+                                        <span class="btn btn-primary" onclick="OpenQuestion(this, 'prev')">Previous question</span>
+                                    }
+                                    @if (count < questions.Count)
+                                    {
+                                        <span class="btn btn-primary" onclick="OpenQuestion(this, 'next')">Next question</span>
+                                    }
+                                    @if (count == questions.Count)
+                                    {
+                                        <input type="submit" onclick="return ValidateForm()" class="btn btn-success" value="Sort me!" />
+                                    }
+                                </div>
+                            }
                         }
-                    }
+                    </form>
+                }
 
-                </form>
-            }
-
-        </div>
+            </div>
         <div class="col-sm-1"></div>
     </div>
 </div>
@@ -175,7 +169,7 @@
     $(document).ready(function () {
         $("div[id^='question_']").css("display", "none");
         $('#question_1').css("display", "block");
-
+        $('body').css("background-image", "none");
         // Remove navbar
         $('.navbar').remove();
     });

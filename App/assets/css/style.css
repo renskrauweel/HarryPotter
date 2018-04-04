@@ -158,6 +158,11 @@ body .navbar {
 }
 
 /* Profile */
+div.profile-content div.firstname,
+div.profile-content div.lastname {
+	display: inline;
+	font-weight: bold;
+}
 div.profile-top div.profile-background {
 	width: 100%;
 	max-height: 300px;
@@ -322,19 +327,68 @@ body label.top-validation-wrong div.validation-summary-errors ul li {
 
 /* Custom table styling */
 .custom-table {
-    background-color: #fff;
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
+	background-color: #fff;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
 }
 /* Container styling */
+form#form h2 {
+	font-family: 'Slabo 27px', serif;
+}
 
-.row {
-	margin: 50px 0;
+div.col-sm-10 div#intro div.content-container p {
+	font-family: 'Slabo 27px', serif;
+	font-size: 20px;
+}
+
+form#form div.radio {
+	background: #eaeaea;
+	float: left;
+	width: calc(50% - 10px);
+	margin: 5px;
+	min-height: 180px;
+	padding: 12px;
+	border: 2px solid #c2bdbd;
+}
+
+	form#form div.radio label {
+		font-weight: normal;
+		margin: 10px 0;
+		font-size: 20px;
+		color: #3e3e3e;
+		font-family: 'Slabo 27px', serif;
+		display: inline;
+	}
+
+form#form input[type="radio"] {
+	margin: 7px 0;
+	margin-left: -20px;
+}
+
+div.content-container div button.btn.btn-default,
+form#form div#question_12.form-group input.btn.btn-success,
+form#form span.btn.btn-primary {
+	background: transparent;
+	border: 3px solid #C3C3C3;
+	font-family: 'Cinzel', serif;
+	font-size: 20px;
+	font-weight: bold;
+	margin-top: 20px;
+	color: #2f2e2e;
+	width: 100%;
+}
+form#form img.img-question {
+	width: 100%;
+}
+form#form div.radio img.img-answer {
+	float: right;
+	width: 200px;
+	height: auto;
 }
 
 /* Sorting hat */
 .img-question {
-    max-width: 100%;
+	max-width: 100%;
 }
 .img-answer, .gif-answer {
     max-width: 100%;

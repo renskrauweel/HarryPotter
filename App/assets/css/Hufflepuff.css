@@ -12,6 +12,7 @@ body {
     font-family: 'Cinzel', serif;
 }
 
-.nav.navbar-nav li a:hover {
-    background-color: #1a472a;
-}
+	.nav.navbar-nav li a:hover {
+		background-color: #e8a600;
+		border-color: #e8a600;
+	}
