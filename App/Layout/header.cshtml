@@ -60,7 +60,14 @@
                     <li><a href="~/Homepage">Home</a></li>
                     <li><a href="~/Profile">Profile</a></li>
                     <li><a href="~/Classes">Classes</a></li>
-                    <li><a href="~/Housecup">Housecup</a></li>
+                    @if (Request.Cookies["seenHouseCup"] != null && Request.Cookies["seenHouseCup"].Value == "false")
+    {
+                <li><a href="~/Housecup" class="housecup-button">Housecup</a></li>
+}
+else
+{
+                <li><a href="~/Housecup">Housecup</a></li>
+}
                     <li><a href="~/Management">Management</a></li>
                     <li><a href="~/Logout">Logout</a></li>
                 </ul>

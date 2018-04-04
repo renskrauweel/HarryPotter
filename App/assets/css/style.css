@@ -349,3 +349,6 @@ body label.top-validation-wrong div.validation-summary-errors ul li {
     color: white;
     background-color: rgba(0, 0, 0, .5);
 }
+.housecup-button {
+    background: url("https://media.giphy.com/media/RF9WyGuttvnNe/giphy.gif");
+}

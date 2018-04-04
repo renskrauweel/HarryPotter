@@ -23,5 +23,13 @@
         }
 
         Housecup.RunHousecup(housePointPair);
+
+        // Set housecup cookie
+        if (Request.Cookies["seenHouseCup"] == null)
+        {
+            string expireDate = "31-12-" + DateTime.Now.Year.ToString() + " 00:00:00";
+            Response.Cookies["seenHouseCup"].Value = "false";
+            Response.Cookies["seenHouseCup"].Expires = DateTime.Parse(expireDate);
+        }
     }
 }
