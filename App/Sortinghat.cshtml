@@ -85,8 +85,8 @@
                             List<Answer> answers = Data.GetAnswers(question.GetQuestionId());
 
                     <div id="question_@count" class="form-group">
-                        <object data="~/assets/img/Questions/@question.GetQuestionId()_.png">
-                            <img src="~/assets/img/blanco.png" />
+                        <object data="~/assets/img/Questions/@question.GetQuestionId()_.png" class="img-question">
+                            <img src="~/assets/img/blanco.png" style="display: none;" />
                         </object>
                         <img src="" />
                         <h2>@question.GetQuestion()</h2>
@@ -94,8 +94,8 @@
                         @foreach (Answer answer in answers)
     {
                     <div class="radio">
-                        <object data="~/assets/img/Answers/@answer.GetAnswerId()_.png">
-                            <object data="~/assets/img/Answers/@answer.GetAnswerId()_.gif">
+                        <object data="~/assets/img/Answers/@answer.GetAnswerId()_.png" class="img-answer">
+                            <object data="~/assets/img/Answers/@answer.GetAnswerId()_.gif" class="gif-answer">
                                 <img src="~/assets/img/blanco.png" />
                             </object>
                         </object>

@@ -331,3 +331,15 @@ body label.top-validation-wrong div.validation-summary-errors ul li {
 .row {
 	margin: 50px 0;
 }
+
+/* Sorting hat */
+.img-question {
+    max-width: 100%;
+}
+.img-answer, .gif-answer {
+    max-width: 100%;
+    max-height: 350px;
+}
+.img-answer {
+    display: block;
+}
