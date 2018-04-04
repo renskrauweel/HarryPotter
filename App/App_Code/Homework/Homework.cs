@@ -93,9 +93,7 @@ namespace Homework
         public static Homework GetHomework(int homeworkId)
         {
             var db = Database.Open("HarryPotter");
-
             var row = db.QuerySingle("SELECT * FROM homework WHERE homework_id = @0", homeworkId);
-
             db.Dispose();
 
             Homework homework = new Homework();
@@ -107,6 +105,38 @@ namespace Homework
             }
 
             return homework;
+        }
+
+        // Set homework result
+        public void SetResult(int user_id, int result)
+        {
+            var db = Database.Open("HarryPotter");
+            var row = db.Execute("INSERT INTO homework_results (homework_id, user_id, results) VALUES (@0, @1, @2)", this.homework_id, user_id, result);
+            db.Dispose();
+        }
+
+        // Return if user finished homework
+        public bool HomeworkDone(int user_id)
+        {
+            var db = Database.Open("HarryPotter");
+            var row = db.QueryValue("SELECT COUNT(*) FROM homework_results WHERE user_id = @0 AND homework_id = @1", user_id, this.homework_id);
+            db.Dispose();
+
+            if ((int)row > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        // Fetch result from homework
+        public int GetResult(int user_id)
+        {
+            var db = Database.Open("HarryPotter");
+            var row = db.QueryValue("SELECT results FROM homework_results WHERE user_id = @0 AND homework_id = @1", user_id, this.homework_id);
+            db.Dispose();
+
+            return (int)row;
         }
     }
 }

@@ -67,5 +67,34 @@ namespace Homework
 
             db.Dispose();
         }
+
+        // Fetch all answers of homework
+        public static List<Answer> GetAnswers(int homeworkId)
+        {
+            var db = Database.Open("HarryPotter");
+            var rows = db.Query("SELECT * FROM answers WHERE homework_id = @0", homeworkId);
+            db.Dispose();
+
+            List<Answer> answers = new List<Answer>();
+            foreach (var row in rows)
+            {
+                int answerId = (int)row["answer_id"];
+                int questionId = (int)row["question_id"];
+                int points = (int)row["points"];
+                answers.Add(new Answer(answerId, questionId, row["answer"], points, homeworkId));
+            }
+
+            return answers;
+        }
+
+        // Fetch answer points
+        public static int GetAnswerPoints(int answerId)
+        {
+            var db = Database.Open("HarryPotter");
+            var row = db.QueryValue("SELECT points FROM answers WHERE answer_id = @0", answerId);
+            db.Dispose();
+
+            return (int)row;
+        }
     }
 }

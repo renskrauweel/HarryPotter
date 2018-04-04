@@ -58,11 +58,25 @@
             <tbody>
                 @foreach (Homework.Homework homework in classroom.GetHomework())
     {
-            <tr>
+                <tr>
+                    @if (homework.HomeworkDone(userId))
+    {
+                <td>@homework.GetHomeworkDescription()</td>
+}
+else
+{
                 <td><a href="~/Homework?homework=@homework.GetHomeworkId()">@homework.GetHomeworkDescription()</a></td>
-                <td>@homework.GetDeadline()</td>
-                <td>-</td>
-            </tr>
+}
+                    <td>@homework.GetDeadline()</td>
+                    @if (homework.HomeworkDone(userId))
+                    {
+                        // Fetch result
+                        <td>@homework.GetResult(userId)</td>
+                    }
+                    else {
+                        <td>-</td>
+                    }
+                </tr>
 }
             </tbody>
         </table>

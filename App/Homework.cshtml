@@ -19,11 +19,38 @@
         }
     }
 
+    // Page variables
+    int points = 0;
+
     // Fetch the homework
     Homework.Homework homework = Homework.Homework.GetHomework(homeworkId);
 
+    if (homework.HomeworkDone(userId))
+    {
+        Response.Redirect("~/Class?class=" + homework.GetClassId());
+    }
+
     // Fetch questions
     List<Homework.Question> questions = homework.GetQuestions();
+
+    // Fetch answers
+    List<Homework.Answer> answers = Homework.Answer.GetAnswers(homeworkId);
+
+    if (IsPost)
+    {
+        // Foreach through post request
+        foreach (string s in Request.Form.Keys)
+        {
+            points += Homework.Answer.GetAnswerPoints(Request.Form[s].AsInt());
+        }
+
+        // Set result
+        homework.SetResult(userId, points);
+
+        // Redirect to class page
+        Response.Redirect("~/Class?class=" + homework.GetClassId());
+    }
+
 }
 
 @RenderPage("~/Layout/Header.cshtml")
@@ -32,28 +59,29 @@
     <h1>@homework.GetHomeworkDescription()</h1>
     <form method="POST" id="form">
         @{
-            int count = 0;
-            foreach (Homework.Question question in questions)
+        int count = 0;
+        foreach (Homework.Question question in questions)
+        {
+            count++;
+
+            <div id="question_@count" class="form-group">
+                <h2>@question.GetQuestion()</h2>
+
+                @foreach (Homework.Answer answer in answers)
             {
-                count++;
-                // Get question's answers
-                List<Homework.Answer> answers = question.GetAnswers();
-
-                <div id="question_@count" class="form-group">
-                    <h2>@question.GetQuestion()</h2>
-
-                    @foreach (Homework.Answer answer in answers)
-                    {
-                        <div class="radio">
-                            <label><input type="radio" name="question_@answer.GetQuestionId()" value="@answer.GetAnswerId()">@answer.GetAnswer()</label>
-                        </div>
-                    }
-                    
-                </div>
-                
+                if (answer.GetQuestionId() == count)
+                {
+                    <div class="radio">
+                        <label><input type="radio" name="question_@answer.GetQuestionId()" value="@answer.GetAnswerId()">@answer.GetAnswer()</label>
+                    </div>
             }
         }
 
+            </div>
+
+    }
+        }
+        <input type="submit" class="btn btn-success" value="Submit" />
     </form>
 
 </div>
