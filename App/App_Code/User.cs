@@ -29,6 +29,11 @@ public class User
 
     }
 
+    public int GetHouseId()
+    {
+        return this.house_id;
+    }
+
     // Get the full name of a user
     public string GetFullName()
     {

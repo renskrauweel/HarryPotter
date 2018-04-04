@@ -30,7 +30,7 @@ public class Class
         }
 
         // Construct homework
-        var homework = db.Query("SELECT * FROM homework WHERE class_id = @0", this.class_id);
+        var homework = db.Query("SELECT * FROM homework WHERE class_id = @0 AND deadline > getdate()", this.class_id);
         foreach (var row in homework)
         {
             this.homework.Add(new Homework.Homework((int)row["homework_id"], row["homework_description"], (int)row["class_id"], (DateTime)row["deadline"]));
