@@ -93,7 +93,9 @@
                                     @foreach (Answer answer in answers)
                                     {
                                     <div class="radio">
-                                        <img alt="" src="~/assets/img/Answers/@answer.GetAnswerId()_.png" class="img-answer">
+                                        <object data="~/assets/img/Answers/@answer.GetAnswerId()_.gif" class="img-answer">
+                                            <img alt="" src="~/assets/img/Answers/@answer.GetAnswerId()_.png" class="img-answer">
+                                        </object>
                                         <label><input type="radio" name="question_@answer.GetQuestionId()" value="@answer.GetAnswerId()">@answer.GetAnswer()</label>
                                     </div>
                                     }

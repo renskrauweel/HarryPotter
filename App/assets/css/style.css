@@ -386,6 +386,12 @@ form#form div.radio img.img-answer {
 	height: auto;
 }
 
+form#form div.radio object.img-answer {
+    float: right;
+    width: 200px;
+    height: auto;
+}
+
 /* Sorting hat */
 .img-question {
 	max-width: 100%;
