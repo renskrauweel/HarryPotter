@@ -1,9 +1,19 @@
 ﻿@{
+    // Check for session
+    if (Session["id_user"] == null)
+    {
+        Response.Redirect("~/Login.cshtml");
+    }
+
+    // Edit housecup cookie
     if (Request.Cookies["seenHouseCup"] != null) {
         string expireDate = "31-12-" + DateTime.Now.Year.ToString() + " 00:00:00";
         Response.Cookies["seenHouseCup"].Value = "true";
         Response.Cookies["seenHouseCup"].Expires = DateTime.Parse(expireDate);
     }
+
+    // Fetch housecups
+    List<Housecup> housecups = Housecup.GetHousecups();
 }
 
 @RenderPage("~/Layout/header.cshtml")
@@ -13,27 +23,20 @@
         <table class="table table-dark">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">House</th>
+                    <th scope="col">Points</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                </tr>
+                @foreach (Housecup housecup in housecups)
+                {
+                    <tr>
+                        <th>@housecup.GetYear()</th>
+                        <td>@housecup.GetHouseName()</td>
+                        <td>@housecup.GetPoints()</td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>
