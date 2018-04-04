@@ -343,3 +343,9 @@ body label.top-validation-wrong div.validation-summary-errors ul li {
 .img-answer {
     display: block;
 }
+
+/* Housecup styling */
+.housecup-container {
+    color: white;
+    background-color: rgba(0, 0, 0, .5);
+}

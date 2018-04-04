@@ -1,0 +1,27 @@
+﻿@using WebMatrix.Data
+
+@{
+    // Check housecup
+    if (Housecup.LastYearExists() == false)
+    {
+        var db = Database.Open("HarryPotter");
+        var homeworkResults = db.Query("SELECT * FROM homework_results WHERE date LIKE '%'+@0+'%'", (DateTime.Now.Year - 1).ToString());
+        db.Dispose();
+
+        int userId;
+        int houseId;
+        int points;
+        User user = new User();
+
+        Dictionary<int, int> housePointPair = new Dictionary<int, int>() { { 1, 0 }, { 2, 0 }, { 3, 0 }, { 4, 0 } };
+        foreach (var result in homeworkResults)
+        {
+            userId = (int)result["user_id"];
+            houseId = user.GetHouseIdByUserId(userId);
+            points = (int)result["results"];
+            housePointPair[houseId] += points;
+        }
+
+        Housecup.RunHousecup(housePointPair);
+    }
+}

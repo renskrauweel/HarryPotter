@@ -78,11 +78,19 @@ public class User
     public string GetRole()
     {
         var db = Database.Open("HarryPotter");
-
         string role = db.QueryValue("SELECT role_name FROM roles WHERE role_id = @0", this.role_id);
-
         db.Dispose();
 
         return role;
+    }
+
+    // Fetch house_id by user_id
+    public int GetHouseIdByUserId(int user_id)
+    {
+        var db = Database.Open("HarryPotter");
+        var houseId = db.QueryValue("SELECT house_id FROM users WHERE user_id = @0", user_id);
+        db.Dispose();
+
+        return (int)houseId;
     }
 }
