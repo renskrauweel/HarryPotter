@@ -55,6 +55,15 @@ public class User
     }
 
     /// <summary>
+    /// Return user_id
+    /// </summary>
+    /// <returns>int user_id</returns>
+    public int GetUserId()
+    {
+        return this.user_id;
+    }
+
+    /// <summary>
     /// Get the full name of a user
     /// </summary>
     /// <returns>string fullname</returns>
@@ -129,5 +138,38 @@ public class User
         db.Dispose();
 
         return (int)houseId;
+    }
+
+    /// <summary>
+    /// Return list of users by role
+    /// </summary>
+    /// <param name="role_id"></param>
+    /// <returns>List<User> users</returns>
+    public List<User> GetUsersByRole(int role_id)
+    {
+        List<User> users = new List<User>();
+        var db = Database.Open("HarryPotter");
+        var rows = db.Query("SELECT * FROM users WHERE role_id = @0", role_id);
+        db.Dispose();
+
+        foreach (var row in rows)
+        {
+            users.Add(new User((int)row["user_id"], row["username"], row["firstname"],
+                row["lastname"], row["email"], (int)row["role_id"], (int)row["house_id"]));
+        }
+
+        return users;
+    }
+
+    /// <summary>
+    /// Assign user
+    /// </summary>
+    /// <param name="user_id"></param>
+    /// <param name="role_id"></param>
+    public void AssignUser(int user_id, int role_id)
+    {
+        var db = Database.Open("HarryPotter");
+        db.Execute("UPDATE users SET role_id = @0 WHERE user_id = @1", role_id, user_id);
+        db.Dispose();
     }
 }

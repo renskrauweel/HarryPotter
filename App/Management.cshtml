@@ -33,29 +33,26 @@
     string lastAnswer = null;
 
     var db = Database.Open("HarryPotter");
-    var students = db.Query("SELECT * FROM users WHERE role_id = 1");
-    var teachers = db.Query("SELECT * FROM users WHERE role_id = 2");
-    var headmasters = db.Query("SELECT * FROM users WHERE role_id = 3");
+    List<User> students = user.GetUsersByRole(1);
+    List<User> teachers = user.GetUsersByRole(2);
+    List<User> headmasters = user.GetUsersByRole(3);
     db.Dispose();
 
     // Update wizard as teacher
     if (!Request.QueryString["asign_wizard"].IsEmpty() && Request.QueryString["asign_wizard"].IsInt())
     {
-        int asignAs = Request.QueryString["asign_as"].AsInt();
-        string update = "UPDATE users SET role_id = 2 WHERE user_id = @0";
-        db.Execute(update, asignAs);
+        int asignAs = Request.QueryString["asign_wizard"].AsInt();
+        user.AssignUser(asignAs, 2);
+
         Response.Redirect("~/Management.cshtml");
-        db.Dispose();
     }
 
     // Update teacher as headmaster
     if (!Request.QueryString["asign_teacher"].IsEmpty() && Request.QueryString["asign_teacher"].IsInt())
     {
         int asignAs = Request.QueryString["asign_teacher"].AsInt();
-        string update = "UPDATE users SET role_id = 3 WHERE user_id = @0";
-        db.Execute(update, asignAs);
+        user.AssignUser(asignAs, 3);
         Response.Redirect("~/Management.cshtml");
-        db.Dispose();
     }
 
     // Form handling
@@ -171,19 +168,19 @@
         </div>
         <div class="row">
             <h2>Students</h2>
-            <p>Asign students as teacher</p>
+            <p>Assign students as teacher</p>
             <ul>
-                @foreach (var student in students)
+                @foreach (User student in students)
                 {
-                    <li id="item">@student.firstname @student.lastname | <a href="Management.cshtml?asign_wizard=@student.user_id" class="list-link">asign</a></li>
+                    <li id="item">@student.GetFullName() | <a href="Management.cshtml?asign_wizard=@student.GetUserId()" class="list-link">assign</a></li>
                 }
             </ul>
             <h2>Teachers</h2>
-            <p>Asign teacher as headmaster</p>
+            <p>Assign teacher as headmaster</p>
             <ul>
                 @foreach (var teacher in teachers)
                 {
-                    <li id="item">@teacher.firstname @teacher.lastname | <a href="Management.cshtml?asign_teacher=@teacher.user_id" class="list-link">asign</a></li>
+                    <li id="item">@teacher.GetFullName() | <a href="Management.cshtml?asign_teacher=@teacher.GetUserId()" class="list-link">assign</a></li>
                 }
             </ul>
             <h2>Headmasters</h2>
@@ -191,7 +188,7 @@
             <ul>
                 @foreach (var headmaster in headmasters)
                 {
-                    <li id="item">@headmaster.firstname @headmaster.lastname</li>
+                    <li id="item">@headmaster.GetFullName()</li>
                 }
             </ul>
         </div>
