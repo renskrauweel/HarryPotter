@@ -395,6 +395,10 @@ form#form div.radio object.img-answer {
     display: block;
 }
 
+form#form.homework div.radio {
+    min-height: 0;
+}
+
 /* Housecup styling */
 .housecup-container {
     color: white;
