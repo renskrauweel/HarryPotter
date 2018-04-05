@@ -20,6 +20,13 @@
     var house = db.QueryValue("SELECT house_name FROM houses WHERE house_id = @0", house_id);
 
     db.Dispose();
+
+    // Redirect if no house
+    User user = new User();
+    if (user.HasHouse(userId) == false)
+    {
+        Response.Redirect("~/Sortinghat");
+    }
 }
 
 @RenderPage("~/Layout/Header.cshtml")

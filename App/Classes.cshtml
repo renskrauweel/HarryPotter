@@ -22,6 +22,13 @@
             Response.Redirect("~/Classes");
         }
     }
+
+    // Redirect if no house
+    User user = new User();
+    if (user.HasHouse(userId) == false)
+    {
+        Response.Redirect("~/Sortinghat");
+    }
 }
 
 @RenderPage("~/Layout/Header.cshtml")
@@ -52,8 +59,7 @@
                                 {
                                     fullname = "-";
                                 }
-                                var var2 = item;
-                                var var1 = fullname;
+
                                 <tr>
                                     <td>@item.GetClassname()</td>
                                     <td> @fullname</td>
