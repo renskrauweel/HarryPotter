@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using WebMatrix.Data;
 
+/// <summary>
+/// User class
+/// </summary>
 public class User
 {
     private int user_id;
@@ -14,6 +17,16 @@ public class User
     private int role_id;
     private int house_id;
 
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="user_id"></param>
+    /// <param name="username"></param>
+    /// <param name="firstname"></param>
+    /// <param name="lastname"></param>
+    /// <param name="email"></param>
+    /// <param name="role_id"></param>
+    /// <param name="house_id"></param>
     public User(int user_id, string username, string firstname, string lastname, string email, int role_id, int house_id = 0)
     {
         this.user_id = user_id;
@@ -24,23 +37,37 @@ public class User
         this.role_id = role_id;
         this.house_id = house_id;
     }
+    /// <summary>
+    /// Empty constructor
+    /// </summary>
     public User()
     {
 
     }
 
+    /// <summary>
+    /// Return house_id
+    /// </summary>
+    /// <returns>int house_id</returns>
     public int GetHouseId()
     {
         return this.house_id;
     }
 
-    // Get the full name of a user
+    /// <summary>
+    /// Get the full name of a user
+    /// </summary>
+    /// <returns>string fullname</returns>
     public string GetFullName()
     {
         return this.firstname + " " + this.lastname;
     }
 
-    // Fetch a user from the DB by user_id
+    /// <summary>
+    /// Fetch a user from the DB by user_id
+    /// </summary>
+    /// <param name="user_id"></param>
+    /// <returns>User user</returns>
     public User GetUser(int user_id)
     {
         var db = Database.Open("HarryPotter");
@@ -62,7 +89,10 @@ public class User
         return new User();
     }
 
-    // Fetch house name
+    /// <summary>
+    /// Fetch house name
+    /// </summary>
+    /// <returns>string housename</returns>
     public string GetHouseName()
     {
         var db = Database.Open("HarryPotter");
@@ -74,7 +104,10 @@ public class User
         return housename;
     }
 
-    // Fetch role
+    /// <summary>
+    /// Fetch role
+    /// </summary>
+    /// <returns>string role</returns>
     public string GetRole()
     {
         var db = Database.Open("HarryPotter");
@@ -84,7 +117,11 @@ public class User
         return role;
     }
 
-    // Fetch house_id by user_id
+    /// <summary>
+    /// Fetch house_id by user_id
+    /// </summary>
+    /// <param name="user_id"></param>
+    /// <returns>int house_id</returns>
     public int GetHouseIdByUserId(int user_id)
     {
         var db = Database.Open("HarryPotter");

@@ -32,76 +32,168 @@
     int lastQuestionId;
     string lastAnswer = null;
 
+    var db = Database.Open("HarryPotter");
+    var students = db.Query("SELECT * FROM users WHERE role_id = 1");
+    var teachers = db.Query("SELECT * FROM users WHERE role_id = 2");
+    var headmasters = db.Query("SELECT * FROM users WHERE role_id = 3");
+    db.Dispose();
+
+    // Update wizard as teacher
+    if (!Request.QueryString["asign_wizard"].IsEmpty() && Request.QueryString["asign_wizard"].IsInt())
+    {
+        int asignAs = Request.QueryString["asign_as"].AsInt();
+        string update = "UPDATE users SET role_id = 2 WHERE user_id = @0";
+        db.Execute(update, asignAs);
+        Response.Redirect("~/Management.cshtml");
+        db.Dispose();
+    }
+
+    // Update teacher as headmaster
+    if (!Request.QueryString["asign_teacher"].IsEmpty() && Request.QueryString["asign_teacher"].IsInt())
+    {
+        int asignAs = Request.QueryString["asign_teacher"].AsInt();
+        string update = "UPDATE users SET role_id = 3 WHERE user_id = @0";
+        db.Execute(update, asignAs);
+        Response.Redirect("~/Management.cshtml");
+        db.Dispose();
+    }
 
     // Form handling
     if (IsPost)
     {
-        int homeworkId = Homework.GetMaxHomeworkId();
-        if (homeworkId == 0)
+        switch (Request["form_type"])
         {
-            homeworkId = 1;
-        } else
-        {
-            homeworkId++;
-        }
+            case "add_homework":
+                int homeworkId = Homework.GetMaxHomeworkId();
+                if (homeworkId == 0)
+                {
+                    homeworkId = 1;
+                }
+                else
+                {
+                    homeworkId++;
+                }
 
-        List<Question> questions = new List<Question>();
-        List<Answer> answers = new List<Answer>();
+                List<Question> questions = new List<Question>();
+                List<Answer> answers = new List<Answer>();
 
-        // Foreach through post request
-        foreach (string s in Request.Form.Keys)
-        {
-            // Response.Write(s.ToString() + ":" + Request.Params[s] + "<br>");
-            if (s.ToString().Contains("question"))
-            {
-                string[] tokens = s.ToString().Split('_');
-                var var1 = tokens;
-                questions.Add(new Question(tokens.ElementAt(1).AsInt(), Request.Params[s], homeworkId));
-            }
-            if (s.ToString().Contains("answer"))
-            {
-                string[] tokens = s.ToString().Split('_');
-                lastQuestionId = tokens.ElementAt(1).AsInt() + Question.GetMaxQuestionId();
-                lastAnswer = Request.Params[s];
-            }
-            if (s.ToString().Contains("scoring"))
-            {
-                string[] tokens = s.ToString().Split('_');
-                lastQuestionId = tokens.ElementAt(1).AsInt();
-                answers.Add(new Answer(lastQuestionId, lastAnswer, Request.Params[s].AsInt(), homeworkId));
-            }
-        }
+                // Foreach through post request
+                foreach (string s in Request.Form.Keys)
+                {
+                    // Response.Write(s.ToString() + ":" + Request.Params[s] + "<br>");
+                    if (s.ToString().Contains("question"))
+                    {
+                        string[] tokens = s.ToString().Split('_');
+                        var var1 = tokens;
+                        questions.Add(new Question(tokens.ElementAt(1).AsInt(), Request.Params[s], homeworkId));
+                    }
+                    if (s.ToString().Contains("answer"))
+                    {
+                        string[] tokens = s.ToString().Split('_');
+                        lastQuestionId = tokens.ElementAt(1).AsInt() + Question.GetMaxQuestionId();
+                        lastAnswer = Request.Params[s];
+                    }
+                    if (s.ToString().Contains("scoring"))
+                    {
+                        string[] tokens = s.ToString().Split('_');
+                        lastQuestionId = tokens.ElementAt(1).AsInt();
+                        answers.Add(new Answer(lastQuestionId, lastAnswer, Request.Params[s].AsInt(), homeworkId));
+                    }
+                }
 
-        // Insert assigment
-        var dateTime = Convert.ToDateTime(Request.Form["deadline_date"] + " " + Request.Form["deadline_time"]);
-        Homework.InsertHomework(Request.Form["description"], Request.Form["class"].AsInt(), dateTime);
+                // Insert assigment
+                var dateTime = Convert.ToDateTime(Request.Form["deadline_date"] + " " + Request.Form["deadline_time"]);
+                Homework.InsertHomework(Request.Form["description"], Request.Form["class"].AsInt(), dateTime);
 
-        // Insert questions
-        foreach (Question question in questions)
-        {
-            question.InsertQuestion();
-        }
+                // Insert questions
+                foreach (Question question in questions)
+                {
+                    question.InsertQuestion();
+                }
 
-        // Insert answers
-        foreach (Answer answer in answers)
-        {
-            answer.InsertAnswer();
+                // Insert answers
+                foreach (Answer answer in answers)
+                {
+                    answer.InsertAnswer();
+                }
+                break;
+            case "add_class":
+
+                // Validation requirefield
+                Validation.RequireField("class");
+
+                if (Validation.IsValid())
+                {
+                    // Request values out Form
+                    string className = Request.Form["class"];
+
+                    // Check if class is created
+                    var addClass = db.QuerySingle("SELECT classname FROM classes WHERE classname = @0 ", className);
+                    if (addClass == null)
+                    {
+                        string insert = "INSERT INTO classes (classname) VALUES (@0)";
+                        db.Execute(insert, className);
+                        Response.Redirect("~/Classes.cshtml");
+                    }
+                    else
+                    {
+                        // Error message if credentials are incorrect
+                        ModelState.AddFormError("Class already created");
+                    }
+
+                    db.Dispose();
+                }
+                break;
         }
 
     }
-}
+
+ }
 
 @RenderPage("~/Layout/Header.cshtml")
 
 <div class="container">
     <h1>Management</h1>
     @if (user.GetRole() == "Headmaster")
-    {
+        {
         <div class="row">
             <h2>Classes</h2>
+            <form method="post">
+                <input type="hidden" name="form_type" value="add_class" />
+                <div class="form-details">
+                    <label class="class">
+                        <input type="text" name="class" placeholder="Classname" class="form-control" value="@Request.Form["class"]">
+                    </label>
+                    <label class="validation-wrong">@Html.ValidationSummary()</label>
+                </div>
+                <button type="submit" class="btn btn-default">Create class</button>
+            </form>
         </div>
         <div class="row">
+            <h2>Students</h2>
+            <p>Asign students as teacher</p>
+            <ul>
+                @foreach (var student in students)
+                {
+                    <li id="item">@student.firstname @student.lastname | <a href="Management.cshtml?asign_wizard=@student.user_id" class="list-link">asign</a></li>
+                }
+            </ul>
             <h2>Teachers</h2>
+            <p>Asign teacher as headmaster</p>
+            <ul>
+                @foreach (var teacher in teachers)
+                {
+                    <li id="item">@teacher.firstname @teacher.lastname | <a href="Management.cshtml?asign_teacher=@teacher.user_id" class="list-link">asign</a></li>
+                }
+            </ul>
+            <h2>Headmasters</h2>
+            <p>List of headmasters</p>
+            <ul>
+                @foreach (var headmaster in headmasters)
+                {
+                    <li id="item">@headmaster.firstname @headmaster.lastname</li>
+                }
+            </ul>
         </div>
     }
     <div class="row">
@@ -115,7 +207,7 @@
                         <label for="class">Class</label>
                         <select name="class" id="class" class="form-control">
                             @foreach (Class classroom in classes)
-                {
+    {
                     <option value="@classroom.GetClassId()">@classroom.GetClassname()</option>
     }
                         </select>
@@ -206,5 +298,7 @@
 
             $('#tblHomework').append(appendString);
         });
+
     });
+
 </script>

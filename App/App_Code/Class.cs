@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using WebMatrix.Data;
 
+/// <summary>
+/// Class class (classroom)
+/// </summary>
 public class Class
 {
     private int class_id;
@@ -13,6 +16,13 @@ public class Class
     private List<Post> posts = new List<Post>();
     private List<Homework.Homework> homework = new List<Homework.Homework>();
 
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="class_id"></param>
+    /// <param name="classname"></param>
+    /// <param name="teacher_id"></param>
+    /// <param name="class_description"></param>
 	public Class(int class_id, string classname, int teacher_id, string class_description)
 	{
         this.class_id = class_id;
@@ -40,14 +50,26 @@ public class Class
     }
 
     // Getters
+    /// <summary>
+    /// Return class_id
+    /// </summary>
+    /// <returns>int class_id</returns>
     public int GetClassId()
     {
         return this.class_id;
     }
+    /// <summary>
+    /// Return classname
+    /// </summary>
+    /// <returns>string classname</returns>
     public string GetClassname()
     {
         return this.classname;
     }
+    /// <summary>
+    /// Return teacher
+    /// </summary>
+    /// <returns>User teacher</returns>
     public User GetTeacher()
     {
         var db = Database.Open("HarryPotter");
@@ -62,20 +84,35 @@ public class Class
 
         return new User();
     }
+    /// <summary>
+    /// Return class_description
+    /// </summary>
+    /// <returns>string class_description</returns>
     public string GetClassdescription()
     {
         return this.class_description;
     }
+    /// <summary>
+    /// Return posts
+    /// </summary>
+    /// <returns>List<Post> posts</returns>
     public List<Post> GetPosts()
     {
         return this.posts;
     }
+    /// <summary>
+    /// Return homework
+    /// </summary>
+    /// <returns>List<Homework.Homework> homework</returns>
     public List<Homework.Homework> GetHomework()
     {
         return this.homework;
     }
 
-    // Fetch all the classes from the database
+    /// <summary>
+    /// Fetch all the classes from the database
+    /// </summary>
+    /// <returns>List<Class> classes</returns>
     public static List<Class> GetClasses()
     {
         var db = Database.Open("HarryPotter");
@@ -98,7 +135,11 @@ public class Class
         return classes;
     }
 
-    // Fetch my classes from the database
+    /// <summary>
+    /// Fetch my classes from the database
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <returns>List<Class> classes</returns>
     public static List<Class> GetMyClasses(int userId)
     {
         var db = Database.Open("HarryPotter");
@@ -122,7 +163,11 @@ public class Class
         return classes;
     }
 
-    // Participate on class
+    /// <summary>
+    /// Participate on class
+    /// </summary>
+    /// <param name="classId"></param>
+    /// <param name="userId"></param>
     public static void ParticipateOnClass(int classId, int userId)
     {
         var db = Database.Open("HarryPotter");
@@ -135,7 +180,12 @@ public class Class
         db.Dispose();
     }
 
-    // Return if the user is participating on class
+    /// <summary>
+    /// Return if the user is participating on class
+    /// </summary>
+    /// <param name="classId"></param>
+    /// <param name="userId"></param>
+    /// <returns>bool is participating</returns>
     public static bool IsParticipating(int classId, int userId)
     {
         var db = Database.Open("HarryPotter");
@@ -150,7 +200,11 @@ public class Class
         return true;
     }
 
-    // Get class by id
+    /// <summary>
+    /// Get class by id
+    /// </summary>
+    /// <param name="classId"></param>
+    /// <returns>Class class</returns>
     public static Class GetClass(int classId)
     {
         var db = Database.Open("HarryPotter");

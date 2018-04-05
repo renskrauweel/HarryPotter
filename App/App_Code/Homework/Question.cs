@@ -6,6 +6,9 @@ using WebMatrix.Data;
 
 namespace Homework
 {
+    /// <summary>
+    /// Question class in Homework namespace
+    /// </summary>
     public class Question
     {
         private int question_id;
@@ -13,6 +16,12 @@ namespace Homework
         private int homework_id;
         private List<Answer> answers = new List<Answer>();
 
+        /// <summary>
+        /// Construct
+        /// </summary>
+        /// <param name="question_id"></param>
+        /// <param name="question"></param>
+        /// <param name="homework_id"></param>
         public Question(int question_id, string question, int homework_id)
         {
             this.question_id = question_id;
@@ -35,24 +44,42 @@ namespace Homework
         }
 
         // Getters
+        /// <summary>
+        /// Return question_id
+        /// </summary>
+        /// <returns>int question_id</returns>
         public int GetQuestionId()
         {
             return this.question_id;
         }
+        /// <summary>
+        /// Return question
+        /// </summary>
+        /// <returns>string question</returns>
         public string GetQuestion()
         {
             return this.question;
         }
+        /// <summary>
+        /// Return homework_id
+        /// </summary>
+        /// <returns>int homework_id</returns>
         public int GetHomeworkId()
         {
             return this.homework_id;
         }
+        /// <summary>
+        /// Return answers
+        /// </summary>
+        /// <returns>List<Answer> answers</returns>
         public List<Answer> GetAnswers()
         {
             return this.answers;
         }
 
-        // Insert question into DB
+        /// <summary>
+        /// Insert question into DB
+        /// </summary>
         public void InsertQuestion()
         {
             var db = Database.Open("HarryPotter");
@@ -62,7 +89,10 @@ namespace Homework
             db.Dispose();
         }
 
-        // Fetch highest question_id from DB
+        /// <summary>
+        /// Fetch highest question_id from DB
+        /// </summary>
+        /// <returns>int question_id</returns>
         public static int GetMaxQuestionId()
         {
             var db = Database.Open("HarryPotter");
