@@ -380,15 +380,9 @@ form#form span.btn.btn-primary {
 form#form img.img-question {
 	width: 100%;
 }
-form#form div.radio img.img-answer {
+form#form div.radio .img-answer {
 	float: right;
 	height: auto;
-}
-
-form#form div.radio object.img-answer {
-    float: right;
-    width: 200px;
-    height: auto;
 }
 
 /* Sorting hat */
@@ -411,3 +405,6 @@ form#form div.radio object.img-answer {
 .housecup-button {
     background: url("https://media.giphy.com/media/RF9WyGuttvnNe/giphy.gif");
 }
+
+
+div.background-special 
