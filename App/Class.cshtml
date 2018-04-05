@@ -47,53 +47,68 @@
     </div>
     <div class="row">
         <h2>Homework</h2>
-        <table class="table table-striped custom-table">
-            <thead>
-                <tr>
-                    <th scope="col">Assignment</th>
-                    <th scope="col">Deadline</th>
-                    <th scope="col">Results</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (Homework.Homework homework in classroom.GetHomework())
-    {
-                <tr>
-                    @if (homework.HomeworkDone(userId))
-    {
-                <td>@homework.GetHomeworkDescription()</td>
-}
-else
-{
-                <td><a href="~/Homework?homework=@homework.GetHomeworkId()">@homework.GetHomeworkDescription()</a></td>
-}
-                    <td>@homework.GetDeadline()</td>
-                    @if (homework.HomeworkDone(userId))
+        @if (classroom.GetHomework().Count > 0)
+        {
+            <table class="table table-striped custom-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Assignment</th>
+                        <th scope="col">Deadline</th>
+                        <th scope="col">Results</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Homework.Homework homework in classroom.GetHomework())
                     {
-                        // Fetch result
-                        <td>@homework.GetResult(userId)</td>
+                        <tr>
+                            @if (homework.HomeworkDone(userId))
+                            {
+                                <td>@homework.GetHomeworkDescription()</td>
+                            }
+                            else
+                            {
+                                <td><a href="~/Homework?homework=@homework.GetHomeworkId()">@homework.GetHomeworkDescription()</a></td>
+                            }
+                            <td>@homework.GetDeadline()</td>
+                            @if (homework.HomeworkDone(userId))
+                            {
+                                // Fetch result
+                                <td>@homework.GetResult(userId)</td>
+                            }
+                            else
+                            {
+                                <td>-</td>
+                            }
+                        </tr>
                     }
-                    else {
-                        <td>-</td>
-                    }
-                </tr>
-}
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        } else
+        {
+            <p>No homework available.</p>
+        }
+
     </div>
     <div class="row">
         <h2>Forum</h2>
-        @foreach (Post post in classroom.GetPosts())
+        @if (classroom.GetPosts().Count > 0)
         {
-            <div class="post">
-                <div class="post-header">
-                    <img src="~/Assets/Img/Houses/@post.GetAuthor().GetHouseName()/logo.png">
-                    <h3>@post.GetAuthor().GetFullName()</h3>
+            foreach (Post post in classroom.GetPosts())
+            {
+                <div class="post">
+                    <div class="post-header">
+                        <img src="~/Assets/Img/Houses/@post.GetAuthor().GetHouseName()/logo.png">
+                        <h3>@post.GetAuthor().GetFullName()</h3>
+                    </div>
+                    <p>@post.GetContent()</p>
+                    <small>@post.GetDate()</small>
                 </div>
-                <p>@post.GetContent()</p>
-                <small>@post.GetDate()</small>
-            </div>
+            }
+        } else
+        {
+            <p>No posts yet. Be the first one to leave a message.</p>
         }
+
     </div>
     <div class="row">
         <h3>Leave a message</h3>
