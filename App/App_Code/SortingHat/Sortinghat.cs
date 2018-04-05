@@ -46,11 +46,25 @@ public class Sortinghat
         if (houseId != 0)
         {
             var db = Database.Open("HarryPotter");
-            
             db.Execute("UPDATE users SET house_id = @0 WHERE user_id = @1", houseId, userId);
-
             db.Dispose();
         }
+
+        return house;
+    }
+
+    /// <summary>
+    /// Sort user by house_id
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <param name="houseId"></param>
+    /// <returns>string housename</returns>
+    public string Sort(int userId, int houseId)
+    {
+        var db = Database.Open("HarryPotter");
+        db.Execute("UPDATE users SET house_id = @0 WHERE user_id = @1", houseId, userId);
+        string house = db.QueryValue("SELECT house_name FROM houses WHERE house_id = @0", houseId);
+        db.Dispose();
 
         return house;
     }

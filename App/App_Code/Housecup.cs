@@ -116,4 +116,18 @@ public class Housecup
 
         return housename;
     }
+
+    /// <summary>
+    /// Return housename by house_id
+    /// </summary>
+    /// <param name="house_id"></param>
+    /// <returns>string housename</returns>
+    public static string GetHouseNameByHouseId(int house_id)
+    {
+        var db = Database.Open("HarryPotter");
+        string housename = db.QueryValue("SELECT house_name FROM houses WHERE house_id = @0", house_id);
+        db.Dispose();
+
+        return housename;
+    }
 }

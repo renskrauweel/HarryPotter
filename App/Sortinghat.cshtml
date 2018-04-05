@@ -16,6 +16,18 @@
     int pointsRavenclaw = 0;
     int pointsSlytherin = 0;
 
+    // Choose house by GET request
+    if (Request.QueryString["hc"].IsEmpty() == false)
+    {
+        int hc = Request.QueryString["hc"].AsInt();
+        if (hc > 0 && hc < 5)
+        {
+            Sortinghat sortinghat = new Sortinghat();
+            int userId = Convert.ToInt32(Session["id_user"]);
+            houseChosen = sortinghat.Sort(userId, hc);
+        }
+    }
+
     if (IsPost)
     {
         // Foreach through post request
@@ -28,10 +40,25 @@
             pointsSlytherin += housePointPair.Values.ElementAt(3);
         }
 
-        Sortinghat sortinghat = new Sortinghat();
-        int userId = Convert.ToInt32(Session["id_user"]);
-        houseChosen = sortinghat.Sort(new Dictionary<string, int> { { "Gryffindor", pointsGryffindor }, { "Hufflepuff", pointsHufflepuff },
-    { "Ravenclaw", pointsRavenclaw }, { "Slytherin", pointsSlytherin } }, userId);
+        List<int> highestHouseIdsWithSameValue = Data.GetHighestHouseIdsWithSameValue(new int[] { pointsGryffindor, pointsHufflepuff, pointsRavenclaw, pointsSlytherin });
+
+        if (highestHouseIdsWithSameValue.Count > 0)
+        {
+            // Final question
+            string strHouses = "";
+            foreach (int houseId in highestHouseIdsWithSameValue)
+            {
+                strHouses += houseId.ToString();
+            }
+            Response.Redirect("~/Sortinghat?h=" + strHouses);
+        }
+        else
+        {
+            Sortinghat sortinghat = new Sortinghat();
+            int userId = Convert.ToInt32(Session["id_user"]);
+            houseChosen = sortinghat.Sort(new Dictionary<string, int> { { "Gryffindor", pointsGryffindor }, { "Hufflepuff", pointsHufflepuff },
+            { "Ravenclaw", pointsRavenclaw }, { "Slytherin", pointsSlytherin } }, userId);
+        }
     }
 
 }
@@ -53,24 +80,27 @@
                 @if (houseChosen != null)
                 {
                     <h3>Your house: @houseChosen</h3>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Gryffindor</th>
-                                <th scope="col">Hufflepuff</th>
-                                <th scope="col">Ravenclaw</th>
-                                <th scope="col">Slytherin</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>@pointsGryffindor</td>
-                                <td>@pointsHufflepuff</td>
-                                <td>@pointsRavenclaw</td>
-                                <td>@pointsSlytherin</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    if (Request.QueryString["hc"].IsEmpty())
+	                {
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Gryffindor</th>
+                                    <th scope="col">Hufflepuff</th>
+                                    <th scope="col">Ravenclaw</th>
+                                    <th scope="col">Slytherin</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>@pointsGryffindor</td>
+                                    <td>@pointsHufflepuff</td>
+                                    <td>@pointsRavenclaw</td>
+                                    <td>@pointsSlytherin</td>
+                                </tr>
+                            </tbody>
+                        </table>    
+	                }
 
                     <a href="~/Profile">Profile page</a>
                 }
@@ -78,6 +108,23 @@
                 {
                     <form method="POST" id="form">
                     @{
+                        if (Request.QueryString["h"].IsEmpty() == false)
+                        {
+                            // Final question
+                            <h1>You score equals on some houses...</h1>
+                            <h2>In which of these houses do you want to be placed?</h2>
+                            for (int i = 0; i < Request.QueryString["h"].Length; i++)
+                            {
+                                var hc = Request.QueryString["h"][i].ToString();
+                                string houseName = @Housecup.GetHouseNameByHouseId(hc.AsInt());
+
+                                <div class="radio">
+                                    <a href="~/Sortinghat?hc=@hc" class="house-button">@houseName</a>
+                                    <img alt="" src="~/assets/img/Houses/@houseName/logo.png" class="img-answer">
+                                </div>
+                            }
+                        } else
+                        {
                             int count = 0;
                             foreach (Question question in questions)
                             {
@@ -85,33 +132,35 @@
                                 // Get question's answers
                                 List<Answer> answers = Data.GetAnswers(question.GetQuestionId());
 
-                                <div id="question_@count" class="form-group">
-                                    <img alt="" src="~/assets/img/Questions/@question.GetQuestionId()_.png" class="img-question">
+                                    <div id="question_@count" class="form-group">
+                                        <img alt="" src="~/assets/img/Questions/@question.GetQuestionId()_.png" class="img-question">
 
-                                    <h2>@question.GetQuestion()</h2>
+                                        <h2>@question.GetQuestion()</h2>
 
-                                    @foreach (Answer answer in answers)
-                                    {
-                                    <div class="radio">
-                                        <img alt="" src="~/assets/img/Answers/@answer.GetAnswerId()_.gif" class="img-answer">
-                                        <img alt="" src="~/assets/img/Answers/@answer.GetAnswerId()_.png" class="img-answer">
-                                        <label><input type="radio" name="question_@answer.GetQuestionId()" value="@answer.GetAnswerId()">@answer.GetAnswer()</label>
+                                        @foreach (Answer answer in answers)
+                                        {
+                                        <div class="radio">
+                                            <img alt="" src="~/assets/img/Answers/@answer.GetAnswerId()_.gif" class="img-answer">
+                                            <img alt="" src="~/assets/img/Answers/@answer.GetAnswerId()_.png" class="img-answer">
+                                            <label><input type="radio" name="question_@answer.GetQuestionId()" value="@answer.GetAnswerId()">@answer.GetAnswer()</label>
+                                        </div>
+                                        }
+                                        @if (count > 1)
+                                        {
+                                            <span class="btn btn-primary" onclick="OpenQuestion(this, 'prev')">Previous question</span>
+                                        }
+                                        @if (count < questions.Count)
+                                        {
+                                            <span class="btn btn-primary" onclick="OpenQuestion(this, 'next')">Next question</span>
+                                        }
+                                        @if (count == questions.Count)
+                                        {
+                                            <input type="submit" onclick="return ValidateForm()" class="btn btn-success" value="Sort me!" />
+                                        }
                                     </div>
-                                    }
-                                    @if (count > 1)
-                                    {
-                                        <span class="btn btn-primary" onclick="OpenQuestion(this, 'prev')">Previous question</span>
-                                    }
-                                    @if (count < questions.Count)
-                                    {
-                                        <span class="btn btn-primary" onclick="OpenQuestion(this, 'next')">Next question</span>
-                                    }
-                                    @if (count == questions.Count)
-                                    {
-                                        <input type="submit" onclick="return ValidateForm()" class="btn btn-success" value="Sort me!" />
-                                    }
-                                </div>
                             }
+                        }
+                            
                         }
                     </form>
                 }

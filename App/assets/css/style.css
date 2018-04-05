@@ -340,15 +340,15 @@ div.col-sm-10 div#intro div.content-container p {
 	font-size: 20px;
 }
 form#form div.radio {
-	background: #eaeaea;
-	float: left;
-	width: calc(50% - 10px);
-	margin: 5px;
-	min-height: 180px;
-	padding: 12px;
-	border: 2px solid #c2bdbd;
+    background: #eaeaea;
+    float: left;
+    width: calc(50% - 10px);
+    margin: 5px;
+    min-height: 180px;
+    padding: 12px;
+    border: 2px solid #c2bdbd;
 }
-	form#form div.radio label {
+	form#form div.radio label, a.house-button {
 		font-weight: normal;
 		margin: 10px 0;
 		font-size: 20px;

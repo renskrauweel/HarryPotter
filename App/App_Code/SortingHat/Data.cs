@@ -165,4 +165,39 @@ public class Data
         }
         return new Answer();
     }
+
+    /// <summary>
+    /// Return list of highest house ids with same values
+    /// </summary>
+    /// <param name="points"></param>
+    /// <returns>List<int> house ids</returns>
+    public static List<int> GetHighestHouseIdsWithSameValue(int[] points)
+    {
+        int highestnumber = 0;
+        int numberOfOccurances = 0;
+        List<int> houseIds = new List<int>();
+
+        // Set highest number
+        foreach (int item in points)
+        {
+            if (item > highestnumber)
+            {
+                highestnumber = item;
+            }
+        }
+
+        // Check if number appears multiple times
+        int position = 0;
+        foreach (int item in points)
+        {
+            position++;
+            if (item == highestnumber)
+            {
+                numberOfOccurances++;
+                houseIds.Add(position);
+            }
+        }
+
+        return houseIds;
+    }
 }
