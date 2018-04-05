@@ -379,16 +379,14 @@ form#form div.radio .img-answer {
 	float: right;
 	height: auto;
 }
-<<<<<<< HEAD
 
 /* Sorting hat */
-=======
 form#form div.radio object.img-answer {
     float: right;
     width: 200px;
     height: auto;
 }
->>>>>>> 53f7fd9061ca0737bf4de3beefb7fb35c1998491
+
 .img-question {
 	max-width: 100%;
 }
@@ -412,6 +410,3 @@ form#form.homework div.radio {
 .housecup-button {
     background: url("https://media.giphy.com/media/RF9WyGuttvnNe/giphy.gif");
 }
-
-
-div.background-special 
