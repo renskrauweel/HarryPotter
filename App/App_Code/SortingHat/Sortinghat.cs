@@ -4,14 +4,25 @@ using System.Linq;
 using System.Web;
 using WebMatrix.Data;
 
+/// <summary>
+/// Sortinghat class
+/// </summary>
 public class Sortinghat
 {
+    /// <summary>
+    /// Empty constructor
+    /// </summary>
     public Sortinghat()
     {
         
     }
 
-    // Sort user by housepoint pair's
+    /// <summary>
+    /// Sort user by housepoint pair's
+    /// </summary>
+    /// <param name="housePointPair"></param>
+    /// <param name="userId"></param>
+    /// <returns>string house</returns>
     public string Sort(Dictionary<string, int> housePointPair, int userId)
     {
         string house = housePointPair.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;

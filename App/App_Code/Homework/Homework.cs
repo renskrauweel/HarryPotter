@@ -6,6 +6,9 @@ using WebMatrix.Data;
 
 namespace Homework
 {
+    /// <summary>
+    /// Homework class in Homework namespace
+    /// </summary>
     public class Homework
     {
         private int homework_id;
@@ -14,6 +17,13 @@ namespace Homework
         private DateTime deadline;
         private List<Question> questions = new List<Question>();
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="homework_id"></param>
+        /// <param name="homework_description"></param>
+        /// <param name="class_id"></param>
+        /// <param name="deadline"></param>
         public Homework(int homework_id, string homework_description, int class_id, DateTime deadline)
         {
             this.homework_id = homework_id;
@@ -24,6 +34,9 @@ namespace Homework
             // Fetch questions from DB
             AddQuestions();
         }
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public Homework()
         {
             // Fetch questions from DB
@@ -31,18 +44,34 @@ namespace Homework
         }
 
         // Getters
+        /// <summary>
+        /// Return homework_id
+        /// </summary>
+        /// <returns>int homework_id</returns>
         public int GetHomeworkId()
         {
             return this.homework_id;
         }
+        /// <summary>
+        /// Return homework_description
+        /// </summary>
+        /// <returns>string homework_description</returns>
         public string GetHomeworkDescription()
         {
             return this.homework_description;
         }
+        /// <summary>
+        /// Return class_id
+        /// </summary>
+        /// <returns>int class_id</returns>
         public int GetClassId()
         {
             return this.class_id;
         }
+        /// <summary>
+        /// Return deadline
+        /// </summary>
+        /// <returns>Datetime deadline</returns>
         public DateTime GetDeadline()
         {
             return this.deadline;
@@ -52,7 +81,9 @@ namespace Homework
             return this.questions;
         }
 
-        // Add questions to homework
+        /// <summary>
+        /// Add questions to homework
+        /// </summary>
         private void AddQuestions()
         {
             var db = Database.Open("HarryPotter");
@@ -67,7 +98,10 @@ namespace Homework
             }
         }
 
-        // Fetch the highest homework_id from DB
+        /// <summary>
+        /// Fetch the highest homework_id from DB
+        /// </summary>
+        /// <returns>int homework_id</returns>
         public static int GetMaxHomeworkId()
         {
             var db = Database.Open("HarryPotter");
@@ -80,7 +114,12 @@ namespace Homework
             return row;
         }
 
-        // Insert homework into DB
+        /// <summary>
+        /// Insert homework into DB
+        /// </summary>
+        /// <param name="homework_description"></param>
+        /// <param name="class_id"></param>
+        /// <param name="deadline"></param>
         public static void InsertHomework(string homework_description, int class_id, DateTime deadline)
         {
             var db = Database.Open("HarryPotter");
@@ -89,7 +128,11 @@ namespace Homework
             db.Dispose();
         }
 
-        // Fetch the homework from DB
+        /// <summary>
+        /// Fetch the homework from DB
+        /// </summary>
+        /// <param name="homeworkId"></param>
+        /// <returns>Homework homework</returns>
         public static Homework GetHomework(int homeworkId)
         {
             var db = Database.Open("HarryPotter");
@@ -107,7 +150,11 @@ namespace Homework
             return homework;
         }
 
-        // Set homework result
+        /// <summary>
+        /// Set homework result
+        /// </summary>
+        /// <param name="user_id"></param>
+        /// <param name="result"></param>
         public void SetResult(int user_id, int result)
         {
             var db = Database.Open("HarryPotter");
@@ -115,7 +162,11 @@ namespace Homework
             db.Dispose();
         }
 
-        // Return if user finished homework
+        /// <summary>
+        /// Return if user finished homework
+        /// </summary>
+        /// <param name="user_id"></param>
+        /// <returns>bool homework is done</returns>
         public bool HomeworkDone(int user_id)
         {
             var db = Database.Open("HarryPotter");
@@ -129,7 +180,11 @@ namespace Homework
             return false;
         }
 
-        // Fetch result from homework
+        /// <summary>
+        /// Fetch result from homework
+        /// </summary>
+        /// <param name="user_id"></param>
+        /// <returns>int results</returns>
         public int GetResult(int user_id)
         {
             var db = Database.Open("HarryPotter");

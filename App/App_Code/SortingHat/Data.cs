@@ -3,8 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+/// <summary>
+/// Data class. This class holds all the questions and answers for the sorting hat
+/// </summary>
 public class Data
 {
+    /// <summary>
+    /// Return questions
+    /// </summary>
     private static List<Question> questions = new List<Question>
     {
         /*
@@ -28,6 +34,9 @@ public class Data
 
     };
 
+    /// <summary>
+    /// Return answers
+    /// </summary>
     private static List<Answer> answers = new List<Answer>
     {
         /*
@@ -108,13 +117,20 @@ public class Data
 
     };
 
-    // Get all questions
+    /// <summary>
+    /// Get all questions
+    /// </summary>
+    /// <returns>List<Question> questions</returns>
     public static List<Question> GetQuestions()
     {
         return Data.questions;
     }
 
-    // Get question's answers by question_id
+    /// <summary>
+    /// Get question's answers by question_id
+    /// </summary>
+    /// <param name="question_id"></param>
+    /// <returns>List<Answer> answers</returns>
     public static List<Answer> GetAnswers(int question_id)
     {
         List<Answer> answers = new List<Answer>();
@@ -129,7 +145,11 @@ public class Data
         return answers;
     }
 
-    // Get single answer by answer_id
+    /// <summary>
+    /// Get single answer by answer_id
+    /// </summary>
+    /// <param name="answerId"></param>
+    /// <returns>Answer answer</returns>
     public static Answer GetAnswer(int answerId)
     {
         foreach (Answer answer in Data.answers)

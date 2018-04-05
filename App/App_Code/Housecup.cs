@@ -4,12 +4,21 @@ using System.Linq;
 using System.Web;
 using WebMatrix.Data;
 
+/// <summary>
+/// Housecup class
+/// </summary>
 public class Housecup
 {
     private int year;
     private int house_id;
     private int points;
 
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="year"></param>
+    /// <param name="house_id"></param>
+    /// <param name="points"></param>
     public Housecup(int year, int house_id, int points)
     {
         this.year = year;
@@ -18,19 +27,35 @@ public class Housecup
     }
 
     // Getters
+    /// <summary>
+    /// Return year
+    /// </summary>
+    /// <returns>int year</returns>
     public int GetYear()
     {
         return this.year;
     }
+    /// <summary>
+    /// Return house_id
+    /// </summary>
+    /// <returns>int house_id</returns>
     public int GetHouseId()
     {
         return this.house_id;
     }
+    /// <summary>
+    /// Return points
+    /// </summary>
+    /// <returns>int points</returns>
     public int GetPoints()
     {
         return this.points;
     }
 
+    /// <summary>
+    /// Return is last year exists in housecup
+    /// </summary>
+    /// <returns>bool last year exists in housecup</returns>
     public static bool LastYearExists()
     {
         var db = Database.Open("HarryPotter");
@@ -44,7 +69,10 @@ public class Housecup
         return false;
     }
 
-    // Run the housecup
+    /// <summary>
+    /// Run the housecup
+    /// </summary>
+    /// <param name="housePointPair"></param>
     public static void RunHousecup(Dictionary<int, int> housePointPair)
     {
         int houseId = housePointPair.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
@@ -54,7 +82,10 @@ public class Housecup
         db.Dispose();
     }
 
-    // Get all housecups
+    /// <summary>
+    /// Get all housecups
+    /// </summary>
+    /// <returns>List<Housecup> housecups</returns>
     public static List<Housecup> GetHousecups()
     {
         var db = Database.Open("HarryPotter");
@@ -73,7 +104,10 @@ public class Housecup
         return housecups;
     }
 
-    // Fetch house name
+    /// <summary>
+    /// Fetch house name
+    /// </summary>
+    /// <returns>string housename</returns>
     public string GetHouseName()
     {
         var db = Database.Open("HarryPotter");
