@@ -331,16 +331,14 @@ body label.top-validation-wrong div.validation-summary-errors ul li {
 	border-top-left-radius: 7px;
 	border-top-right-radius: 7px;
 }
-/* Container styling */
+/* Sortinghat styling */
 form#form h2 {
 	font-family: 'Slabo 27px', serif;
 }
-
 div.col-sm-10 div#intro div.content-container p {
 	font-family: 'Slabo 27px', serif;
 	font-size: 20px;
 }
-
 form#form div.radio {
 	background: #eaeaea;
 	float: left;
@@ -350,7 +348,6 @@ form#form div.radio {
 	padding: 12px;
 	border: 2px solid #c2bdbd;
 }
-
 	form#form div.radio label {
 		font-weight: normal;
 		margin: 10px 0;
@@ -359,12 +356,10 @@ form#form div.radio {
 		font-family: 'Slabo 27px', serif;
 		display: inline;
 	}
-
 form#form input[type="radio"] {
 	margin: 7px 0;
 	margin-left: -20px;
 }
-
 div.content-container div button.btn.btn-default,
 form#form div#question_12.form-group input.btn.btn-success,
 form#form span.btn.btn-primary {
@@ -384,14 +379,11 @@ form#form div.radio img.img-answer {
 	float: right;
 	height: auto;
 }
-
 form#form div.radio object.img-answer {
     float: right;
     width: 200px;
     height: auto;
 }
-
-/* Sorting hat */
 .img-question {
 	max-width: 100%;
 }
