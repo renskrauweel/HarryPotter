@@ -123,13 +123,13 @@
                 {
                     // Request values out Form
                     string className = Request.Form["class"];
+                    string classDescription = Request.Form["class_description"];
 
                     // Check if class is created
                     var addClass = db.QuerySingle("SELECT classname FROM classes WHERE classname = @0 ", className);
                     if (addClass == null)
                     {
-                        string insert = "INSERT INTO classes (classname) VALUES (@0)";
-                        db.Execute(insert, className);
+                        Class.InsertClass(className, classDescription);
                         Response.Redirect("~/Classes.cshtml");
                     }
                     else
@@ -141,18 +141,26 @@
                     db.Dispose();
                 }
                 break;
+            case "assign_teacher":
+                int classId = Request.Form["class_to_assign"].AsInt();
+                int teacherId = Request.Form["teacher_to_assign"].AsInt();
+                if (teacherId > 0 && classId > 0)
+                {
+                    Class.AssignTeacherToClass(teacherId, classId);
+                }
+                break;
         }
 
     }
 
- }
+}
 
 @RenderPage("~/Layout/Header.cshtml")
 
 <div class="container">
     <h1>Management</h1>
     @if (user.GetRole() == "Headmaster")
-        {
+            {
         <div class="row">
             <h2>Classes</h2>
             <form method="post">
@@ -160,6 +168,9 @@
                 <div class="form-details">
                     <label class="class">
                         <input type="text" name="class" placeholder="Classname" class="form-control" value="@Request.Form["class"]">
+                    </label>
+                    <label class="class">
+                        <input type="text" name="class_description" placeholder="Class description" class="form-control" value="@Request.Form["class_description"]">
                     </label>
                     <label class="validation-wrong">@Html.ValidationSummary()</label>
                 </div>
@@ -176,18 +187,38 @@
                 }
             </ul>
             <h2>Teachers</h2>
-            <p>Assign teacher as headmaster</p>
+            <p>Approve teacher as headmaster</p>
             <ul>
                 @foreach (var teacher in teachers)
                 {
                     <li id="item">@teacher.GetFullName() | <a href="Management.cshtml?asign_teacher=@teacher.GetUserId()" class="list-link">assign</a></li>
                 }
             </ul>
+            <h3>Assign teacher to class</h3>
+            <form method="POST">
+                <input type="hidden" name="form_type" value="assign_teacher" />
+                <label for="class_to_assign">Class</label>
+                <select name="class_to_assign" id="class_to_assign" class="form-control">
+                    @foreach (Class classroom in Class.GetClasses())
+                    {
+                        <option value="@classroom.GetClassId()">@classroom.GetClassname()</option>
+                    }
+                </select>
+                <label for="teacher_to_assign">Teacher</label>
+                <select name="teacher_to_assign" id="teacher_to_assign" class="form-control">
+                    @foreach (User teacher in teachers)
+                    {
+                        <option value="@teacher.GetUserId()">@teacher.GetFullName()</option>
+                    }
+                </select>
+                <br />
+                <input type="submit" class="btn btn-success" value="Assign teacher" />
+            </form>
             <h2>Headmasters</h2>
             <p>List of headmasters</p>
             <ul>
                 @foreach (var headmaster in headmasters)
-                {
+    {
                     <li id="item">@headmaster.GetFullName()</li>
                 }
             </ul>

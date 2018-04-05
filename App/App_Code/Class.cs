@@ -208,9 +208,7 @@ public class Class
     public static Class GetClass(int classId)
     {
         var db = Database.Open("HarryPotter");
-
         var row = db.QuerySingle("SELECT * FROM classes WHERE class_id = @0", classId);
-
         db.Dispose();
 
         int teacherId = 0;
@@ -218,5 +216,29 @@ public class Class
             teacherId = (int)row["teacher_id"];
 
         return new Class((int)row["class_id"], row["classname"], teacherId, row["class_description"]);
+    }
+
+    /// <summary>
+    /// Assign teacher to class
+    /// </summary>
+    /// <param name="teacher_id"></param>
+    /// <param name="class_id"></param>
+    public static void AssignTeacherToClass(int teacher_id, int class_id)
+    {
+        var db = Database.Open("HarryPotter");
+        db.Execute("UPDATE classes SET teacher_id = @0 WHERE class_id = @1", teacher_id, class_id);
+        db.Dispose();
+    }
+
+    /// <summary>
+    /// Insert class into DB
+    /// </summary>
+    /// <param name="classname"></param>
+    /// <param name="class_description"></param>
+    public static void InsertClass(string classname, string class_description)
+    {
+        var db = Database.Open("HarryPotter");
+        db.Execute("INSERT INTO classes (classname, class_description) VALUES (@0, @1)", classname, class_description);
+        db.Dispose();
     }
 }
