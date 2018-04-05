@@ -17,6 +17,12 @@
         Response.Redirect("~/Profile");
     }
 
+    // Redirect if no house
+    if (user.HasHouse(userId) == false)
+    {
+        Response.Redirect("~/Sortinghat");
+    }
+
     // Fetch classes
     List<Class> classes;
     if (user.GetRole() == "Headmaster")

@@ -19,6 +19,13 @@
         }
     }
 
+    // Redirect if no house
+    User user = new User();
+    if (user.HasHouse(userId) == false)
+    {
+        Response.Redirect("~/Sortinghat");
+    }
+
     // Page variables
     int points = 0;
 

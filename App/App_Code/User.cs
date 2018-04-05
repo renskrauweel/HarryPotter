@@ -172,4 +172,24 @@ public class User
         db.Execute("UPDATE users SET role_id = @0 WHERE user_id = @1", role_id, user_id);
         db.Dispose();
     }
+
+    /// <summary>
+    /// Return if user has house
+    /// </summary>
+    /// <param name="user_id"></param>
+    /// <returns>bool has house</returns>
+    public bool HasHouse(int user_id)
+    {
+        var db = Database.Open("HarryPotter");
+        var row = db.QueryValue("SELECT house_id FROM users WHERE user_id = @0", user_id);
+        db.Dispose();
+
+        int houseId = (int)row;
+
+        if (houseId > 0)
+        {
+            return true;
+        }
+        return false;
+    }
 }
